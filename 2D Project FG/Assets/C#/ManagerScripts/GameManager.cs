@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     //test inputs
     private void Update()
     {
+        //test inputs
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             highScore += 15;
@@ -44,12 +45,23 @@ public class GameManager : MonoBehaviour
             ReadData();
             Debug.Log(_path);
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SetHighScore();
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             System.IO.File.Delete(_path);
         }
+
+        SetScore();
     }
 
+    public void SetScore()
+    {
+        currentScore += 10;
+        //Debug.Log(currentScore);
+    }
     //reads saved data
     public void ReadData()
     {
@@ -92,6 +104,12 @@ public class GameManager : MonoBehaviour
     //call when game ends
     public void SetHighScore()
     {
-        highScore = currentScore;
+        if (highScore <= currentScore)
+        {
+            highScore = currentScore;
+            SaveData();
+        }
+        Debug.Log(gameData.highScore);
+        SaveData();
     }
 }
