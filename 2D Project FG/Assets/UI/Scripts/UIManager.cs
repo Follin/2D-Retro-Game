@@ -8,7 +8,12 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Options()
+    {
+        
     }
 
 
