@@ -14,6 +14,18 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
+        if (_audioMixer == null)
+        {
+            Debug.LogError("There is no Audio Mixer attached to " + this);
+            return;
+        }
+
+        if (_resolutionDropDown == null)
+        {
+            Debug.LogError("There is no Resolution Drop Down attached to " + this);
+            return;
+        }
+
         _resolutions = Screen.resolutions;
         _resolutionDropDown.ClearOptions();
 
