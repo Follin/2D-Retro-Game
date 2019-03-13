@@ -11,7 +11,7 @@ public class PlayerScoreList : MonoBehaviour
     public static GameData gameData = new GameData();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //ensure there is only 1 scoremanager
         scoreManager = FindObjectOfType<ScoreManager>();

@@ -22,15 +22,16 @@ public class GameManager : MonoBehaviour
     {
         //sets path location and filename
         _path = Application.persistentDataPath + "/" + _fileName;
+       
     }
 
-    //initialises game state
+    //initializes game state
     void Start()
     {
         if (System.IO.File.Exists(_path))
         {
             ReadData();
-            
+
             scoreManager.LoadData();
             playerScoreList.LoadData();
             LoadData();

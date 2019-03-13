@@ -35,16 +35,17 @@ public class ScoreManager : MonoBehaviour
 
     public void LoadData()
     {
-        Debug.Log(gameData.playerInfo.Count);
-        
         gameData.playerInfo.AddRange(playerInfoList);
+        string jsonData = System.IO.File.ReadAllText(Application.persistentDataPath + "/RetroGame.Json");
+        gameData = JsonUtility.FromJson<GameData>(jsonData);
+        foreach (PlayerInfo data in gameData.playerInfo)
+        {
+            SetNewUserInfoMainScore(data);
+            playerScoreList.UpdateScoreBoard();
+        }
         
-        //foreach (PlayerInfo playerInfo in gameData.playerInfo)
-        //{
-
-        //    playerInfoList.Add(playerInfo);
-        //}
-
+        Debug.Log("Number of player info " + gameData.playerInfo.Count);
+        InitialiazeDict();
         //playerInfoList = gameData.playerInfo;
         //playerScoresV2 = new Dictionary<int, PlayerTeam>();
         //load usernames
@@ -113,6 +114,11 @@ public class ScoreManager : MonoBehaviour
             currentScore = currentScore
         };
         playerInfoList.Add(playerInfo);
+    }
+
+    public void SetNewUserInfoMainScore(PlayerInfo playerInfo)
+    {
+        SetNewUserInfoMainScore(playerInfo.username, highScore, playerInfo.currentScore);
     }
 
     public void SetNewUserInfoRank(string username, string rank, int currentRank)
