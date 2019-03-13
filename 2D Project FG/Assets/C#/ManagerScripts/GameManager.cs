@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //public List<PlayerTeam> playerTeams = new List<PlayerTeam>();
+
     public int highScore, currentScore;
     private string _fileName = "RetroGame.Json";
     private string _path;
     public static GameData gameData = new GameData();
+    public static PlayerInfo playerInfo = new PlayerInfo();
+
+    public ScoreManager scoreManager;
+    public PlayerScoreList playerScoreList;
+
+    //need arrays for usernames?
+    //Maybe use struct??
 
     private void Awake()
     {
@@ -21,8 +30,11 @@ public class GameManager : MonoBehaviour
         if (System.IO.File.Exists(_path))
         {
             ReadData();
-
+            
+            scoreManager.LoadData();
+            playerScoreList.LoadData();
             LoadData();
+
         }
     }
 
@@ -30,6 +42,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //test inputs
+        DebugInput(); 
+
+        SetScore();
+    }
+
+    private void DebugInput()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             highScore += 15;
@@ -53,13 +72,12 @@ public class GameManager : MonoBehaviour
         {
             System.IO.File.Delete(_path);
         }
-
-        SetScore();
     }
 
+    //increases score based on time
     public void SetScore()
     {
-        currentScore += 10;
+        currentScore += 1;
         //Debug.Log(currentScore);
     }
     //reads saved data
@@ -71,6 +89,10 @@ public class GameManager : MonoBehaviour
             {
                 string contents = System.IO.File.ReadAllText(_path);
                 gameData = JsonUtility.FromJson<GameData>(contents);
+                
+                Debug.Log(gameData.playerInfo);
+                Debug.Log(gameData.testStruct);
+
             }
             else
             {
@@ -89,16 +111,28 @@ public class GameManager : MonoBehaviour
     public void LoadData()
     {
         highScore = gameData.highScore;
+        //playerTeams = gameData.playerTeams;
     }
 
     //save data to jsonfile
     public void SaveData()
     {
         gameData.highScore = highScore;
+        gameData.usernames = playerScoreList.usernames;
+        gameData.playerInfo = scoreManager.playerInfoList;
+
+        gameData.testStruct = new PlayerInfo
+        {
+            username = "Jerry",
+            currentRank = 42
+        };
+        //gameData.playerScores = scoreManager._playerScores;
+        //gameData.playerTeams = playerTeams;
+        //gameData.usernames = 
 
         string contents = JsonUtility.ToJson(gameData, true);
         System.IO.File.WriteAllText(_path, contents);
-        Debug.Log("Game Saved");
+        Debug.Log("Game Saved " + contents);
     }
 
     //call when game ends
