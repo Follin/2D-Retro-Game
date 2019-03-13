@@ -14,12 +14,14 @@ public class JohnPlayerTest : MonoBehaviour
     private bool canTransfer;
     public float transferCooldown;
     public GameObject abilityAnimation;
-    [SerializeField] private float scaleIncreaseAmount; 
+    [SerializeField] private float scaleIncreaseAmount;
+    private TestGameManager _testGameManager;
+    [SerializeField] private string _gameManagerName;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-
+        _testGameManager = GameObject.Find(_gameManagerName).GetComponent<TestGameManager>();
     }
 
     // Start is called before the first frame update
@@ -31,8 +33,15 @@ public class JohnPlayerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement(_index);
-        SpecialAbility(_index);
+        if (_testGameManager.gameState == TestGameManager.GameState.play)
+        {
+            PlayerMovement(_index);
+            SpecialAbility(_index);
+        }
+        else if (_testGameManager.gameState == TestGameManager.GameState.lose)
+        {
+            Death();
+        }
 
     }
 
@@ -118,7 +127,8 @@ public class JohnPlayerTest : MonoBehaviour
 
     private void Death()
     {
-
+        _rb.velocity = Vector2.zero; 
+        //explosion
     }
 
 }

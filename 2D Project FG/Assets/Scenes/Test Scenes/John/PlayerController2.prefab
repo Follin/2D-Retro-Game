@@ -48,13 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _index: 2
   speed: 250
-  otherPlayer: {fileID: 412412253433083977, guid: 4a07cd67f14105a468e8a8a818697095,
-    type: 3}
+  otherPlayer: {fileID: 0}
   specialIsActivated: 0
   specialWaiting: 0
   transferCooldown: 4
   abilityAnimation: {fileID: 3880553524734492425}
   scaleIncreaseAmount: 1.2
+  _gameManagerName: TestGameManager
 --- !u!50 &6742710274005610746
 Rigidbody2D:
   serializedVersion: 4
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6742710275039313610}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
