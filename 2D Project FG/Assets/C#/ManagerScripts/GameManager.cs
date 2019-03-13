@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //public List<PlayerTeam> playerTeams = new List<PlayerTeam>();
+    [SerializeField]
+    public enum GameState { play, win, lose, pause }
+    public GameState gameState;
 
     public int highScore, currentScore;
     private string _fileName = "RetroGame.Json";

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JohnPlayerTest : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private int _index;
     public float speed;
     Rigidbody2D _rb;
-    public JohnPlayerTest otherPlayer;
+    public PlayerController otherPlayer;
     [SerializeField] private bool specialIsActivated;
     [SerializeField] private bool specialWaiting;
     private bool canTransfer;
