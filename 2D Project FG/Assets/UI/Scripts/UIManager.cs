@@ -11,12 +11,6 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void Options()
-    {
-        
-    }
-
-
     public void QuitGame()
     {
         Debug.Log("Quit Game");

@@ -19,7 +19,6 @@ public class SettingsMenu : MonoBehaviour
             Debug.LogError("There is no Audio Mixer attached to " + this);
             return;
         }
-
         if (_resolutionDropDown == null)
         {
             Debug.LogError("There is no Resolution Drop Down attached to " + this);
@@ -65,6 +64,4 @@ public class SettingsMenu : MonoBehaviour
         Resolution resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
-
-
 }

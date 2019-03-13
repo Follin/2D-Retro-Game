@@ -17,7 +17,6 @@ public class LevelGenerator : MonoBehaviour
             Debug.LogError("There is no Generation Point in the scene.");
             return;
         }
-
         if (_platforms.Length <= 0)
         {
             Debug.LogError("The array in " + this + " is null. Add Platforms to the array to generate platforms.");

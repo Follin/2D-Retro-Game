@@ -24,5 +24,4 @@ public class PlatformDestroyer : MonoBehaviour
         if (transform.position.y < _platformDestructionPoint.transform.position.y)
             Destroy(gameObject);
     }
-
 }
