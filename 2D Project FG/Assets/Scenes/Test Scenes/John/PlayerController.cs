@@ -50,6 +50,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag != "Enemy") return;
+        
+        Debug.Log("GAME OVER");
+    }
+
     public void PlayerMovement(int index)
     {
         float delta = _speed * Time.deltaTime;
