@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class JohnPlayerTest : MonoBehaviour
 {
-    [SerializeField]
-    private int _index;
+
+    [SerializeField] private int _index;
     public float speed;
     Rigidbody2D _rb;
     public JohnPlayerTest otherPlayer;
-    public bool specialIsActivated;
-    public bool specialWaiting;
+    [SerializeField] private bool specialIsActivated;
+    [SerializeField] private bool specialWaiting;
     private bool canTransfer;
     public float transferCooldown;
 
