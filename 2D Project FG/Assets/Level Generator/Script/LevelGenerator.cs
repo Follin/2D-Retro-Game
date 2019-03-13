@@ -6,15 +6,15 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject[] _platforms;
-    [SerializeField] private Transform _GenerationPoint;
+    [SerializeField] private Transform _generationPoint;
 
     private float _platformHight;
 
     private void Start()
     {
-        if (_GenerationPoint == null)
+        if (_generationPoint == null)
         {
-            Debug.LogError("There is no Generation Point in the scene.");
+            Debug.LogError("There is no Generation Point attached to " + this);
             return;
         }
         if (_platforms.Length <= 0)
@@ -28,7 +28,8 @@ public class LevelGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < _GenerationPoint.transform.position.y)
+        if(_generationPoint == null) return;
+        if (transform.position.y < _generationPoint.transform.position.y)
         {
             int randomNumber = Random.Range(0, _platforms.Length);
 
