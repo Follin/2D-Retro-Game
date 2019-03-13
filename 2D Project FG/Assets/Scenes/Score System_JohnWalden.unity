@@ -222,6 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScore: 0
   currentScore: 0
+  scoreManager: {fileID: 1831865980}
+  playerScoreList: {fileID: 1314819817}
 --- !u!4 &490949292
 Transform:
   m_ObjectHideFlags: 0
@@ -657,6 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScoreEntryPrefab: {fileID: 2969039864708938264, guid: dfe2184cd6fba434cb953a8f4e7e397a,
     type: 3}
+  usernames: []
 --- !u!1 &1466274714
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,11 +943,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c989c9c67b7a04c91017c8756ef93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInfoList: []
   highScore: High Score
   rank: Rank
-  username1: John
-  username2: Barry
-  username3: Bob
+  gameManager: {fileID: 490949291}
+  playerScoreList: {fileID: 1314819817}
 --- !u!4 &1831865981
 Transform:
   m_ObjectHideFlags: 0

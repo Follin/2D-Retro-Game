@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class ScoreManager : MonoBehaviour
 {
-  
-    Dictionary<string, Dictionary <string, int> > _playerScores;
+    //player score info
+    public Dictionary<string, Dictionary <string, int> > _playerScores;
+
+    public List<PlayerInfo> playerInfoList = new List<PlayerInfo>(); 
+
+    public static PlayerInfo playerInfo = new PlayerInfo();
+    public static GameData gameData = new GameData();
+
+    //variables
     public string highScore = "High Score";
-    public string rank = "Rank"; 
-    public string username1 = "John";
-    public string username2 = "Barry";
-    public string username3 = "Bob";
+    public string rank = "Rank";
+    int enterCounter = 0;
+
+    public GameManager gameManager;
+    public PlayerScoreList playerScoreList;
 
     private void Start()
     {
@@ -20,30 +29,99 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-
+        int r = Random.Range(1, 1700);
+        EnterNewUser(r);  
     }
 
-    public void TestUsers()
+    public void LoadData()
     {
-        SetScore(username1, highScore, 5);
-        SetScore(username1, rank, 0);
+        Debug.Log(gameData.playerInfo.Count);
+        
+        gameData.playerInfo.AddRange(playerInfoList);
+        
+        //foreach (PlayerInfo playerInfo in gameData.playerInfo)
+        //{
 
-        SetScore(username2, highScore, 4);
-        SetScore(username2, rank, 0);
+        //    playerInfoList.Add(playerInfo);
+        //}
 
-        //SetScore(username3, highScore, 0);
-        SetScore(username3, rank, 0);
-
-        SetScore("Snag", highScore, 3);
-        SetScore("Snag", rank, 0);
-
-        SetScore("Chog", highScore, 2);
-        SetScore("Chog", rank, 0);
-
-        SetScore("Chog2", highScore, 1);
-        SetScore("Chog2", rank, 0);
+        //playerInfoList = gameData.playerInfo;
+        //playerScoresV2 = new Dictionary<int, PlayerTeam>();
+        //load usernames
+        //print("scoreManager load data");
     }
 
+    public void AddToPInfoList()
+    {
+        
+    }
+
+    //must be called when player enters their username - current score is then added into score
+    public void EnterNewUser(int score)
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            enterCounter += 1;
+            Debug.Log(enterCounter);
+            switch (enterCounter)
+            {
+            case 1:
+                string garry = "Garry";
+                SetNewUserInfoMainScore(garry, highScore, score);
+                playerScoreList.UpdateScoreBoard();
+                Debug.Log("Enter 1 Pressed");
+                break;
+            case 2:
+                string bob = "Bob";
+                SetNewUserInfoMainScore(bob, highScore, score);
+                playerScoreList.UpdateScoreBoard();
+                Debug.Log("Enter 2 Pressed");
+                break;
+            case 3:
+                string yog = "Yog";
+                SetNewUserInfoMainScore(yog, highScore, score);
+                playerScoreList.UpdateScoreBoard();
+                Debug.Log("Enter 3 Pressed");
+                break;
+            case 4:
+                string smog = "Smog";
+                SetNewUserInfoMainScore(smog, highScore, score);
+                playerScoreList.UpdateScoreBoard();
+                Debug.Log("Enter 4 Pressed");
+                break;
+            case 5:
+                string broz = "Broz";
+                SetNewUserInfoMainScore(broz, highScore, score);
+                playerScoreList.UpdateScoreBoard();
+                Debug.Log("Enter 5 Pressed");
+                break;
+
+            }
+            //print(addCount);
+            
+        }
+    }
+
+    public void SetNewUserInfoMainScore(string username, string highScore, int currentScore /*string rank, int currentRank*/)
+    {
+        SetScore(username, highScore, currentScore);
+
+        playerInfo = new PlayerInfo
+        {
+            username = username,
+            scoretype = highScore,
+            currentScore = currentScore
+        };
+        playerInfoList.Add(playerInfo);
+    }
+
+    public void SetNewUserInfoRank(string username, string rank, int currentRank)
+    {
+        SetScore(username, rank, currentRank);
+
+    }
+
+    //initialises dictionary on call
     private void InitialiazeDict()
     {
         //if exists, exit early
@@ -54,6 +132,7 @@ public class ScoreManager : MonoBehaviour
         _playerScores = new Dictionary<string, Dictionary<string, int>>();
     }
 
+    //returns player score according to username and scoretype arguments
     public int GetScore(string username, string scoreType)
     {
         InitialiazeDict();
@@ -74,6 +153,7 @@ public class ScoreManager : MonoBehaviour
         return _playerScores[username] [scoreType];
     }
 
+    //sets player score
     public void SetScore(string username, string scoreType, int value)
     {
         InitialiazeDict();
@@ -85,15 +165,19 @@ public class ScoreManager : MonoBehaviour
         _playerScores[username][scoreType] = value;
     }
 
+    //sets player score with added amount
     public void ChangeScore (string username, string scoreType, int addAmount)
     {
         InitialiazeDict();
 
+        //get current score value from dictionary
         int currentScore = GetScore(username, scoreType);
         SetScore(username, scoreType, currentScore + addAmount);
 
     }
     
+    //returns player teams and orders them accoridng to scores
+    //called by PlayerScoreList when updating the board
     public string[] GetPlayerTeams(string sortingScoreType)
     {
         InitialiazeDict();
@@ -103,11 +187,12 @@ public class ScoreManager : MonoBehaviour
         return names.OrderByDescending(n => GetScore(n, sortingScoreType)).ToArray(); 
     }
 
+    //adds to selected score via debug
     public void AddToScore(string currentUser, int scoreAddAmount)
     {
         ChangeScore(currentUser, highScore, scoreAddAmount);
-        Debug.Log(GetScore(username3, highScore));
     }
 
+    
 
 }
