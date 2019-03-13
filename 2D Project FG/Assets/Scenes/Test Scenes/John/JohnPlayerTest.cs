@@ -13,6 +13,8 @@ public class JohnPlayerTest : MonoBehaviour
     [SerializeField] private bool specialWaiting;
     private bool canTransfer;
     public float transferCooldown;
+    public GameObject abilityAnimation;
+    [SerializeField] private float scaleIncreaseAmount; 
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class JohnPlayerTest : MonoBehaviour
     {
         PlayerMovement(_index);
         SpecialAbility(_index);
+
     }
 
     public void PlayerMovement(int index)
@@ -96,11 +99,13 @@ public class JohnPlayerTest : MonoBehaviour
 
         if (specialIsActivated)
         {
-            gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            gameObject.transform.localScale = new Vector3(scaleIncreaseAmount, scaleIncreaseAmount, 1);
+            abilityAnimation.SetActive(true);
         }
         else
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
+            abilityAnimation.SetActive(false);
         }
 
     }
