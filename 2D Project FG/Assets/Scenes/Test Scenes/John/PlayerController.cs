@@ -23,18 +23,26 @@ public class PlayerController : MonoBehaviour
     private TestGameManager _testGameManager;
 
     private bool _canTransfer;
+
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _testGameManager = GameObject.Find(_gameManagerName).GetComponent<TestGameManager>();
+
+
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         _canTransfer = true;
+   
     }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -52,10 +60,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Enemy") return;
-        
-        Debug.Log("GAME OVER");
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("GameOver");
+        }
+
     }
+
 
     public void PlayerMovement(int index)
     {
@@ -82,7 +93,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 _specialWaiting = true;
-                print("player1 waiting");
 
                 if (_otherPlayer._specialWaiting)
                 {
@@ -143,3 +153,4 @@ public class PlayerController : MonoBehaviour
     }
 
 }
+
