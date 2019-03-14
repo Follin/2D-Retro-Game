@@ -52,6 +52,13 @@ public class PlayerController : MonoBehaviour
         Death();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Enemy")) return;
+
+        Death();
+    }
+
     public void PlayerMovement(int index)
     {
         float deltaSmall = _smallSpeed * Time.deltaTime;
