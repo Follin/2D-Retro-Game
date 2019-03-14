@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int highScore;  
     public string[] usernames;
     public List<PlayerInfo> playerInfo = new List<PlayerInfo>();
     public PlayerInfo testStruct = new PlayerInfo();

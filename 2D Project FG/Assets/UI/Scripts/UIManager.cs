@@ -10,14 +10,22 @@ public class UIManager : MonoBehaviour
     private GameManager gameManager;
     public Image deathScreen;
     public Text deathText;
-
+    private GameObject _scoreBoard, _scoreManager;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
+        _scoreBoard = GameObject.Find("ScoreBoard");
+        _scoreManager = GameObject.Find("ScoreManager");
+
         deathScreen.color = new Color(deathScreen.color.r, deathScreen.color.g, deathScreen.color.b, 0);
         deathText.color = new Color(deathText.color.r, deathText.color.g, deathText.color.b, 0); 
+    }
+
+    private void Start()
+    {
+        //PlayGame - only here for testing
+        PlayGame();
     }
 
     private void Update()
@@ -27,8 +35,7 @@ public class UIManager : MonoBehaviour
 
     public void DeathScreen()
     {
-        StartCoroutine(DeathScreenBehaviour(1, 255, deathScreen, deathText));
-        print("DeathScreen Called");
+        StartCoroutine(DeathScreenBehaviour(0.01f, 1, deathScreen, deathText));
     }
 
     IEnumerator DeathScreenBehaviour(float speed, float maxOpacity, Image deathScreen, Text deathText)
@@ -38,17 +45,18 @@ public class UIManager : MonoBehaviour
         while(speedTracker < maxOpacity)
         {
             speedTracker += speed;
-            print(speedTracker);
             deathScreen.color = new Color(deathScreen.color.r, deathScreen.color.g, deathScreen.color.b, speedTracker);
             deathText.color = new Color(deathText.color.r, deathText.color.g, deathText.color.b, speedTracker);
+            yield return new WaitForSeconds(0.01f);
         }
-        print("lose screen complete");
-        yield return new WaitForSeconds(1);
+
     }
-    
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        _scoreBoard.SetActive(false);
+        _scoreManager.SetActive(false);
     }
 
     public void QuitGame()

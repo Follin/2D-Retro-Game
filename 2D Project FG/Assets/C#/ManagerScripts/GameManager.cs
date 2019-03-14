@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     public enum GameState { play, win, lose, pause }
     public GameState gameState;
 
-    public int highScore, currentScore;
+    public int currentScore;
     private string _fileName = "RetroGame.Json";
     private string _path;
     public static GameData gameData = new GameData();
@@ -37,10 +38,12 @@ public class GameManager : MonoBehaviour
         if (System.IO.File.Exists(_path))
         {
             ReadData();
+
+            //LOAD DATA
             scoreManager.LoadData();
             playerScoreList.LoadData();
             LoadData();
-
+            
         }
     }
 
@@ -48,23 +51,36 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //test inputs
-        DebugInput();
+        //DebugInput();
         GameScore();
-        SetScore();
+        RestartLevelTest();
+    }
+
+    private void RestartLevelTest()
+    {
+        if (gameState == GameState.lose && Input.GetKeyDown(KeyCode.Space))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 
     private void GameScore()
     {
-        currentScore += 1;
+        if (gameState == GameState.play)
+        {
+            currentScore += 1;
+        }
+        else
+        {
+            print(currentScore);
+            print("Score pause");
+        }
+
     }
 
     private void DebugInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            highScore += 15;
-            Debug.Log(highScore);
-        }
         if (Input.GetKeyDown(KeyCode.S))
         {
             SaveData();
@@ -85,12 +101,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //increases score based on time
-    public void SetScore()
-    {
-        currentScore += 1;
-        //Debug.Log(currentScore);
-    }
     //reads saved data
     public void ReadData()
     {
@@ -100,10 +110,6 @@ public class GameManager : MonoBehaviour
             {
                 string contents = System.IO.File.ReadAllText(_path);
                 gameData = JsonUtility.FromJson<GameData>(contents);
-                
-                Debug.Log(gameData.playerInfo);
-                Debug.Log(gameData.testStruct);
-
             }
             else
             {
@@ -121,26 +127,20 @@ public class GameManager : MonoBehaviour
     //loads saved data
     public void LoadData()
     {
-        highScore = gameData.highScore;
-        //playerTeams = gameData.playerTeams;
     }
 
     //save data to jsonfile
     public void SaveData()
     {
-        gameData.highScore = highScore;
+        
         gameData.usernames = playerScoreList.usernames;
         gameData.playerInfo = scoreManager.playerInfoList;
-
+        
         gameData.testStruct = new PlayerInfo
         {
             username = "Jerry",
             currentRank = 42
         };
-        //gameData.playerScores = scoreManager._playerScores;
-        //gameData.playerTeams = playerTeams;
-        //gameData.usernames = 
-
         string contents = JsonUtility.ToJson(gameData, true);
         System.IO.File.WriteAllText(_path, contents);
         Debug.Log("Game Saved " + contents);
@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     //call when game ends
     public void SetHighScore()
-    {
+    {/*
         if (highScore <= currentScore)
         {
             highScore = currentScore;
@@ -156,5 +156,6 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log(gameData.highScore);
         SaveData();
+        */
     }
 }
