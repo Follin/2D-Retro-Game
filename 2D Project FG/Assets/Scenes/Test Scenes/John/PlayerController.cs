@@ -17,10 +17,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _scaleIncreaseAmount;
 
     [Header("Movement")]
-    [SerializeField] private float _speed;
+    [SerializeField] private float _smallSpeed;
+    [SerializeField] private float _bigSpeed;
+    private float currentSpeed;
 
     private Rigidbody2D _rigidbody;
     private GameManager _gameManager;
+    private UIManager _uiManager;
 
     private bool _canTransfer;
     
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _gameManager = GameObject.Find(_gameManagerName).GetComponent<GameManager>();
+        _uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
     }
 
     // Start is called before the first frame update
@@ -46,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (_gameManager.gameState == GameManager.GameState.lose)
         {
-            Death();
+            DisableInput();
         }
     }
 
@@ -59,19 +63,26 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerMovement(int index)
     {
-        float delta = _speed * Time.deltaTime;
+        float deltaSmall = _smallSpeed * Time.deltaTime;
+        float deltaBig = _bigSpeed * Time.deltaTime;
+
+        if (_specialIsActivated)
+            currentSpeed = deltaBig;
+        else
+            currentSpeed = deltaSmall;
+
 
         if (index == 1)
         {
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-            _rigidbody.velocity = new Vector2(h, v) * delta;
+            _rigidbody.velocity = new Vector2(h, v) * currentSpeed;
         }
         else
         {
             float h1 = Input.GetAxis("Horizontal1");
             float v1 = Input.GetAxis("Vertical1");
-            _rigidbody.velocity = new Vector2(h1, v1) * delta;
+            _rigidbody.velocity = new Vector2(h1, v1) * currentSpeed;
         }
     }
 
@@ -136,10 +147,15 @@ public class PlayerController : MonoBehaviour
         print("Can transfer = true");
     }
 
-    private void Death()
+    private void DisableInput()
     {
-        _rigidbody.velocity = Vector2.zero; 
+        _rigidbody.velocity = Vector2.zero;
         //explosion
+    }
+
+    public void Death()
+    {
+        _uiManager.DeathScreen();
     }
 
 }

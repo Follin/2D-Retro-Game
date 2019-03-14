@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public ScoreManager scoreManager;
     public PlayerScoreList playerScoreList;
+    private UIManager _uiManager;
 
     //need arrays for usernames?
     //Maybe use struct??
@@ -25,7 +26,9 @@ public class GameManager : MonoBehaviour
     {
         //sets path location and filename
         _path = Application.persistentDataPath + "/" + _fileName;
-       
+        _uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
+
+
     }
 
     //initializes game state
@@ -36,7 +39,6 @@ public class GameManager : MonoBehaviour
             ReadData();
             scoreManager.LoadData();
             playerScoreList.LoadData();
-
             LoadData();
 
         }
@@ -46,9 +48,14 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //test inputs
-        DebugInput(); 
-
+        DebugInput();
+        GameScore();
         SetScore();
+    }
+
+    private void GameScore()
+    {
+        currentScore += 1;
     }
 
     private void DebugInput()
