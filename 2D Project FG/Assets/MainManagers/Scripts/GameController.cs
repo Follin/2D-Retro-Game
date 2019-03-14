@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     [Header("Player Setup")]
     [SerializeField] private Image _deathScreen;
     [SerializeField] private Text _deathText;
+    [SerializeField] private Text _scoreText; 
     [SerializeField] private int _currentScore;
     [Space(4)]
 
     [Header("Variables")]
+    //for pauses
     public bool canPlay;
+    //players lose
+    public bool lostGame;
 
     void Awake()
     {
         _deathScreen = GameObject.Find("DeathPanel").GetComponent<Image>();
         _deathText = GameObject.Find("DeathText").GetComponent<Text>();
+        _scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
     }
 
     private void Start()
@@ -28,7 +34,8 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        
+        if (lostGame)
+            RestartLevelTest();
     }
 
     public void DeathScreen()
@@ -50,6 +57,13 @@ public class GameController : MonoBehaviour
 
     }
 
-
+    private void RestartLevelTest()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+    }
 
 }
