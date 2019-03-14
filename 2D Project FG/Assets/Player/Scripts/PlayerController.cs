@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("Player Setup")]
     [SerializeField] private int _index;
     [SerializeField] private PlayerController _otherPlayer;
-    [SerializeField] private string _gameManagerName;
+    private GameController _gameController;
+    [Space(4)]
 
     [Header("Ability Function")]
     [SerializeField] private bool _specialIsActivated;
@@ -15,19 +16,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _abilityAnimation;
     [SerializeField] private float _transferCooldown;
     [SerializeField] private float _scaleIncreaseAmount;
+    [Space(4)]
 
     [Header("Movement")]
     [SerializeField] private float _smallSpeed;
     [SerializeField] private float _bigSpeed;
     private float currentSpeed;
-
     private Rigidbody2D _rigidbody;
-
     private bool _canTransfer;
-    
+
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Start is called before the first frame update
@@ -39,18 +41,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (_gameManager.gameState == GameManager.GameState.play)
-        {
-            PlayerMovement(_index);
-            SpecialAbility(_index);
-        }
-        else if (_gameManager.gameState == GameManager.GameState.lose)
-        {
-            DisableInput();
-        }
-        */
-
         PlayerMovement(_index);
         SpecialAbility(_index);
     }
@@ -58,8 +48,8 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
-        
-        Debug.Log("GAME OVER");
+
+        Death();
     }
 
     public void PlayerMovement(int index)
@@ -156,7 +146,8 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-
+        _gameController.DeathScreen();
+        Debug.Log("GAME OVER");
     }
 
 }
