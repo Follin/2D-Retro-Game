@@ -15,7 +15,7 @@ public class UltimateEnemy : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            _testGameManager.gameState = TestGameManager.GameState.lose;
+            _testGameManager.gameState = GameManager.GameState.lose;
         }
     }
 }
