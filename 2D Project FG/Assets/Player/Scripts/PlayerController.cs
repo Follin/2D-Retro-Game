@@ -22,16 +22,12 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
 
     private Rigidbody2D _rigidbody;
-    private GameManager _gameManager;
-    private UIManager _uiManager;
 
     private bool _canTransfer;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _gameManager = GameObject.Find(_gameManagerName).GetComponent<GameManager>();
-        _uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
     }
 
     // Start is called before the first frame update
@@ -54,6 +50,9 @@ public class PlayerController : MonoBehaviour
             DisableInput();
         }
         */
+
+        PlayerMovement(_index);
+        SpecialAbility(_index);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
