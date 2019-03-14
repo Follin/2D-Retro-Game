@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class UltimateEnemy : MonoBehaviour
 {
-    private TestGameManager _testGameManager;
-    [SerializeField] private string _gameManagerName;
+    private GameManager _gameManager;
+    public PlayerController _playerController;
 
     private void Awake()
     {
-        _testGameManager = GameObject.Find(_gameManagerName).GetComponent<TestGameManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            _testGameManager.gameState = TestGameManager.GameState.lose;
+            _gameManager.gameState = GameManager.GameState.lose;
+            _playerController.Death();
         }
     }
 }
