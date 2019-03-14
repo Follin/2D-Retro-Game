@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
         if (System.IO.File.Exists(_path))
         {
             ReadData();
-
             scoreManager.LoadData();
             playerScoreList.LoadData();
+
             LoadData();
 
         }

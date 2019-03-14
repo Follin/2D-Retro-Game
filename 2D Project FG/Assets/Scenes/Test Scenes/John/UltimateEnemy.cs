@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class UltimateEnemy : MonoBehaviour
 {
-    private TestGameManager _testGameManager;
-    [SerializeField] private string _gameManagerName;
+    private GameManager _testGameManager;
 
     private void Awake()
     {
-        _testGameManager = GameObject.Find(_gameManagerName).GetComponent<TestGameManager>();
+        _testGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

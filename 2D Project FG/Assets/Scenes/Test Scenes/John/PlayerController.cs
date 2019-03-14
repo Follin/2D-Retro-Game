@@ -20,14 +20,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Rigidbody2D _rigidbody;
-    private TestGameManager _testGameManager;
+    private GameManager _gameManager;
 
     private bool _canTransfer;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _testGameManager = GameObject.Find(_gameManagerName).GetComponent<TestGameManager>();
+        _gameManager = GameObject.Find(_gameManagerName).GetComponent<GameManager>();
     }
 
     // Start is called before the first frame update
@@ -39,12 +39,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_testGameManager.gameState == TestGameManager.GameState.play)
+        if (_gameManager.gameState == GameManager.GameState.play)
         {
             PlayerMovement(_index);
             SpecialAbility(_index);
         }
-        else if (_testGameManager.gameState == TestGameManager.GameState.lose)
+        else if (_gameManager.gameState == GameManager.GameState.lose)
         {
             Death();
         }

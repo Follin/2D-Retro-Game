@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _index: 2
   _otherPlayer: {fileID: 0}
-  _gameManagerName: TestGameManager
+  _gameManagerName: GameManager
   _specialIsActivated: 1
   _specialWaiting: 0
   _abilityAnimation: {fileID: 3880553524734492425}
