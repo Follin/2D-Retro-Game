@@ -5,12 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //public List<PlayerTeam> playerTeams = new List<PlayerTeam>();
-    [SerializeField]
-    public enum GameState { play, win, lose, pause }
-    public GameState gameState;
 
-    public int currentScore;
     private string _fileName = "RetroGame.Json";
     private string _path;
     public static GameData gameData = new GameData();
@@ -52,13 +47,14 @@ public class GameManager : MonoBehaviour
     {
         //test inputs
         //DebugInput();
-        GameScore();
-        RestartLevelTest();
+        //GameScore();
+        //RestartLevelTest();
     }
 
+    /*
     private void RestartLevelTest()
     {
-        if (gameState == GameState.lose && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
@@ -78,6 +74,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    */
 
     private void DebugInput()
     {

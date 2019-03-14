@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerScoreList : MonoBehaviour
 {
     public GameObject playerScoreEntryPrefab;
-    private ScoreManager scoreManager;
+    private ScoreManager _scoreManager;
     public string[] usernames;
     public static GameData gameData = new GameData();
 
@@ -14,9 +14,9 @@ public class PlayerScoreList : MonoBehaviour
     void Awake()
     {
         //ensure there is only 1 scoremanager
-        scoreManager = FindObjectOfType<ScoreManager>();
+        _scoreManager = FindObjectOfType<ScoreManager>();
 
-        if (scoreManager == null)
+        if (_scoreManager == null)
         {
             Debug.LogError("No score manager found");
             return;
@@ -53,17 +53,17 @@ public class PlayerScoreList : MonoBehaviour
             Destroy(c.gameObject);
         }
 
-        usernames = scoreManager.GetPlayerTeams(scoreManager.highScore);
+        usernames = _scoreManager.GetPlayerTeams(_scoreManager.highScore);
 
         foreach (string name in usernames)
         {
-            scoreManager.SetNewUserInfoRank(name, scoreManager.rank, currentRank);
+            _scoreManager.SetNewUserInfoRank(name, _scoreManager.rank, currentRank);
 
             GameObject gameObj = Instantiate(playerScoreEntryPrefab); 
             gameObj.transform.SetParent(transform);
             gameObj.transform.Find("Player: Username").GetComponent<Text>().text = name;
-            gameObj.transform.Find("Player: Rank").GetComponent<Text>().text = scoreManager.GetScore(name, scoreManager.rank).ToString();
-            gameObj.transform.Find("Player: Score").GetComponent<Text>().text = scoreManager.GetScore(name, scoreManager.highScore).ToString();
+            gameObj.transform.Find("Player: Rank").GetComponent<Text>().text = _scoreManager.GetScore(name, _scoreManager.rank).ToString();
+            gameObj.transform.Find("Player: Score").GetComponent<Text>().text = _scoreManager.GetScore(name, _scoreManager.highScore).ToString();
             currentRank++;
         }
         

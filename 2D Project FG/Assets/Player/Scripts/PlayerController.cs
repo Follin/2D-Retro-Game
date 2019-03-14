@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (_gameManager.gameState == GameManager.GameState.play)
         {
             PlayerMovement(_index);
@@ -52,11 +53,12 @@ public class PlayerController : MonoBehaviour
         {
             DisableInput();
         }
+        */
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Enemy") return;
+        if (!other.gameObject.CompareTag("Enemy")) return;
         
         Debug.Log("GAME OVER");
     }
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-        _uiManager.DeathScreen();
+
     }
 
 }

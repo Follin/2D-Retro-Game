@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4820915137764290551}
   m_Layer: 0
   m_Name: UltimateEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c90ba68fb0a694e93b05df98fd7044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManagerName: TestGameManager
+  _playerController: {fileID: 0}
 --- !u!61 &4820915137764290551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0000011920929, y: -0.48197532}

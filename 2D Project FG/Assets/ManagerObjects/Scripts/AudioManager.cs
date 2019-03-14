@@ -8,17 +8,17 @@ public class AudioManager : MonoBehaviour
     public AudioMixer mainMixer;
     public AudioClip mainGameTrack;
     public AudioClip gameOverClip; 
-    [SerializeField] private AudioSource audioSourceMainGameTrack;
-    [SerializeField] private AudioSource audioSourceMainGameSFX;
-    [SerializeField] private AudioSource audioSourceMenuTrack;
-    [SerializeField] private AudioSource audioSourceMenuSFX; 
+    [SerializeField] private AudioSource _audioSourceMainGameTrack;
+    [SerializeField] private AudioSource _audioSourceMainGameSFX;
+    [SerializeField] private AudioSource _audioSourceMenuTrack;
+    [SerializeField] private AudioSource _audioSourceMenuSFX; 
     public bool keepFadingIn;
     public bool keepFadingOut;
 
     private void Awake()
     {
-        audioSourceMainGameTrack.outputAudioMixerGroup = mainMixer.FindMatchingGroups("Music")[0];
-        audioSourceMainGameSFX.outputAudioMixerGroup = mainMixer.FindMatchingGroups("SFX")[0];
+        _audioSourceMainGameTrack.outputAudioMixerGroup = mainMixer.FindMatchingGroups("Music")[0];
+        _audioSourceMainGameSFX.outputAudioMixerGroup = mainMixer.FindMatchingGroups("SFX")[0];
     }
 
     // Start is called before the first frame update
@@ -42,14 +42,14 @@ public class AudioManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             //start in-game music
-            StartCoroutine(FadeIn(audioSourceMainGameTrack, 0.08f, 1));
+            StartCoroutine(FadeIn(_audioSourceMainGameTrack, 0.08f, 1));
             PlayInGameMusic();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             //death music
-            StartCoroutine(FadeOut(audioSourceMainGameTrack, 0.2f, 0.001f));
-            audioSourceMainGameSFX.PlayOneShot(gameOverClip);
+            StartCoroutine(FadeOut(_audioSourceMainGameTrack, 0.2f, 0.001f));
+            _audioSourceMainGameSFX.PlayOneShot(gameOverClip);
             //play endgame music
         }
 
@@ -62,7 +62,7 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator MusicLoop(float seconds)
     {
-        audioSourceMainGameTrack.PlayOneShot(mainGameTrack);
+        _audioSourceMainGameTrack.PlayOneShot(mainGameTrack);
         yield return new WaitForSeconds(seconds);
         PlayInGameMusic();
 
@@ -73,7 +73,7 @@ public class AudioManager : MonoBehaviour
         keepFadingIn = true;
         keepFadingOut = false;
         track.volume = 0;
-        float audioVolume = audioSourceMainGameTrack.volume;
+        float audioVolume = _audioSourceMainGameTrack.volume;
         while(track.volume < maxVolume && keepFadingIn)
         {
             audioVolume += speed;
