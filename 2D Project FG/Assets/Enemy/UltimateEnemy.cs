@@ -13,6 +13,7 @@ public class UltimateEnemy : MonoBehaviour
 
     private void Start()
     {
+
     }
 
     private void Update()

@@ -72,15 +72,21 @@ public class PlayerController : MonoBehaviour
 
         if (index == 1)
         {
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-            _rigidbody.velocity = new Vector2(h, v) * currentSpeed;
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+            Vector2 move = new Vector2(h, v);
+            move = move.normalized * currentSpeed;
+
+            _rigidbody.velocity = move;
         }
         else
         {
-            float h1 = Input.GetAxis("Horizontal1");
-            float v1 = Input.GetAxis("Vertical1");
-            _rigidbody.velocity = new Vector2(h1, v1) * currentSpeed;
+            float h1 = Input.GetAxisRaw("Horizontal1");
+            float v1 = Input.GetAxisRaw("Vertical1");
+            Vector2 move = new Vector2(h1, v1);
+            move = move.normalized * currentSpeed;
+
+            _rigidbody.velocity = move;
         }
     }
 

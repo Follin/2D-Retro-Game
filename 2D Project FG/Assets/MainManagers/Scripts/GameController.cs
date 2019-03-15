@@ -36,6 +36,14 @@ public class GameController : MonoBehaviour
     {
         if (lostGame)
             RestartLevelTest();
+        else
+            ScoreUpdate();
+    }
+
+    public void ScoreUpdate()
+    {
+        _currentScore += 1;
+        _scoreText.text = "score " + _currentScore;
     }
 
     public void DeathScreen()
