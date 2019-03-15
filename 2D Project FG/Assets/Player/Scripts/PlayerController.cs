@@ -44,15 +44,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement(_index);
-        SpecialAbility(_index);
+        //if game is still onGoing
+        if (!_gameController.lostGame)
+        {
+            PlayerMovement(_index);
+            SpecialAbility(_index);
+        }
+
     }
 
+    /*
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
         Debug.Log("end game");
-        //Death();
+        Death();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -60,9 +66,9 @@ public class PlayerController : MonoBehaviour
         if (!other.gameObject.CompareTag("Enemy")) return;
         Debug.Log("asdasdasdasde");
 
-        Death();
+        //Death();
     }   
-
+    */
     public void PlayerMovement(int index)
     {
         float deltaSmall = _smallSpeed * Time.deltaTime;
@@ -155,15 +161,12 @@ public class PlayerController : MonoBehaviour
         print("Can transfer = true");
     }
 
-    private void DisableInput()
-    {
-        _rigidbody.velocity = Vector2.zero;
-        //explosion
-    }
-
     public void Death()
     {
         _gameController.DeathScreen();
+        _gameController.lostGame = true;
+        _rigidbody.velocity = Vector2.zero;
+        //Player time continuum explosion
         Debug.Log("GAME OVER");
     }
 
