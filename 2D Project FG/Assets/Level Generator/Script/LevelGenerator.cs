@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour
     private GameObject CameraReference;
     private float _platformHight;
     public static int NumberofSectionPassed = 0;
+    private bool EveryOther = false;
 
     private void Awake()
     {
@@ -22,6 +23,9 @@ public class LevelGenerator : MonoBehaviour
     }
     private void Start()
     {
+        PlatformsLIST.Add(GameObject.Instantiate(_platforms[0], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation, gameObject.transform));
+
+        EveryOther = false;
         if (_generationPoint == null)
         {
             Debug.LogError("There is no Generation Point attached to " + this);
@@ -63,11 +67,18 @@ public class LevelGenerator : MonoBehaviour
         }
         for (int i = 0; PlatformsLIST.Count < MaxPlatforms; i++) //Spawn new if there is room for more
         {
+
             int randomNumber = Random.Range(0, _platforms.Length);
-            if (PlatformsLIST.Count == 0)
-                PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation, gameObject.transform));
+            if (EveryOther == false)
+            {
+                PlatformsLIST.Add(GameObject.Instantiate(_platforms[0], new Vector3(transform.position.x, (PlatformsLIST[PlatformsLIST.Count - 1].transform.position.y) + 10.6f, transform.position.z), transform.rotation, gameObject.transform));
+                EveryOther = true;
+            }
             else
+            {
                 PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, (PlatformsLIST[PlatformsLIST.Count - 1].transform.position.y) + 10.6f, transform.position.z), transform.rotation, gameObject.transform));
+                EveryOther = false;
+            }
 
             //else
             //{
