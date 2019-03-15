@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [Space(4)]
 
     [Header("Ability Function")]
-    [SerializeField] private bool _specialIsActivated;
+    public bool specialIsActivated;
     [SerializeField] private bool _specialWaiting;
     [SerializeField] private GameObject _abilityAnimation;
     [SerializeField] private float _transferCooldown;
@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private bool _canTransfer;
 
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -36,6 +35,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _canTransfer = true;
+
+        if (_index == 1)
+            specialIsActivated = true;
+      
     }
 
     // Update is called once per frame
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (!other.gameObject.CompareTag("Enemy")) return;
         Debug.Log("asdasdasdasde");
 
-        //Death();
+        Death();
     }   
 
     public void PlayerMovement(int index)
@@ -65,7 +68,7 @@ public class PlayerController : MonoBehaviour
         float deltaSmall = _smallSpeed * Time.deltaTime;
         float deltaBig = _bigSpeed * Time.deltaTime;
 
-        if (_specialIsActivated)
+        if (specialIsActivated)
             currentSpeed = deltaBig;
         else
             currentSpeed = deltaSmall;
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
                 if (_otherPlayer._specialWaiting)
                 {
-                    _specialIsActivated = !_specialIsActivated;
+                    specialIsActivated = !specialIsActivated;
                     _canTransfer = false;
                     Invoke("CanTransfer", _transferCooldown);
                 }
@@ -122,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
                 if (_otherPlayer._specialWaiting)
                 {
-                    _specialIsActivated = !_specialIsActivated;
+                    specialIsActivated = !specialIsActivated;
                     _canTransfer = false;
                     Invoke("CanTransfer", _transferCooldown);
                 }
@@ -133,7 +136,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (_specialIsActivated)
+        if (specialIsActivated)
         {
             gameObject.transform.localScale = new Vector3(_scaleIncreaseAmount, _scaleIncreaseAmount, 1);
             _abilityAnimation.SetActive(true);
