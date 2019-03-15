@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1626863444934678486}
   - component: {fileID: 305648995923828588}
   - component: {fileID: 8887994616276037721}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 5083633130402693493}
   - component: {fileID: 3816745311602722647}
   - component: {fileID: 3680368527224057939}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 5457651357885448260}
   - component: {fileID: 5368081533704975064}
   - component: {fileID: 939938495739266577}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 7682277061599397160}
   - component: {fileID: 1588186885989620692}
   - component: {fileID: 7330459660420855139}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 1592491969773992995}
   - component: {fileID: 7154591911340292551}
   - component: {fileID: 1677831605162755930}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 9132924526743166516}
   - component: {fileID: 8375308976620516219}
   - component: {fileID: 6412472873488912399}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 157725884205496615}
   - component: {fileID: 417421311615484542}
   - component: {fileID: 2910085358389845469}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02a0899cdee24c4c81de9185eff23c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldMovementSpeed: {x: 0, y: 0.1, z: 0}
+  WorldMovementSpeed: 0.01
 --- !u!1 &7022989509254039496
 GameObject:
   m_ObjectHideFlags: 0

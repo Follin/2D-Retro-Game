@@ -24,12 +24,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167310653}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.05, y: 0, z: 0}
   m_LocalScale: {x: 1.2375, y: 16.178751, z: 1}
   m_Children: []
-  m_Father: {fileID: 2505805712493531300}
-  m_RootOrder: 3
+  m_Father: {fileID: 2185218238695625626}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &167310655
 BoxCollider2D:
@@ -81,12 +81,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790246745}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.17, y: 0, z: 0}
   m_LocalScale: {x: 1.2375, y: 16.178751, z: 1}
   m_Children: []
-  m_Father: {fileID: 2505805712493531300}
-  m_RootOrder: 4
+  m_Father: {fileID: 2185218238695625626}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &790246747
 BoxCollider2D:
@@ -138,12 +138,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857272181}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.11, y: 8.26, z: 0}
-  m_LocalScale: {x: 1.2375, y: 16.178751, z: 1}
+  m_LocalScale: {x: 1.2375004, y: 16.178759, z: 1}
   m_Children: []
-  m_Father: {fileID: 2505805712493531300}
-  m_RootOrder: 5
+  m_Father: {fileID: 2185218238695625626}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &857272183
 BoxCollider2D:
@@ -263,9 +263,7 @@ Transform:
   - {fileID: 2505805712366910813}
   - {fileID: 2505805712334146754}
   - {fileID: 4820915137775888384}
-  - {fileID: 167310654}
-  - {fileID: 790246746}
-  - {fileID: 857272182}
+  - {fileID: 2185218238695625626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -319,6 +317,39 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2505805712493531297}
   m_Enabled: 1
+--- !u!1 &7439720128758566493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2185218238695625626}
+  m_Layer: 8
+  m_Name: Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2185218238695625626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439720128758566493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 167310654}
+  - {fileID: 790246746}
+  - {fileID: 857272182}
+  m_Father: {fileID: 2505805712493531300}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &30476278
 PrefabInstance:
   m_ObjectHideFlags: 0
