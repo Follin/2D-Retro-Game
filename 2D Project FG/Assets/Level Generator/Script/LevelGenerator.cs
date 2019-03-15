@@ -13,7 +13,7 @@ public class LevelGenerator : MonoBehaviour
     private GameObject CameraReference;
     private float _platformHight;
     public static int NumberofSectionPassed = 0;
-    private bool EveryOther = false;
+    [SerializeField] private bool EveryOther = true;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class LevelGenerator : MonoBehaviour
     {
         PlatformsLIST.Add(GameObject.Instantiate(_platforms[0], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation, gameObject.transform));
 
-        EveryOther = false;
+        EveryOther = true;
         if (_generationPoint == null)
         {
             Debug.LogError("There is no Generation Point attached to " + this);
