@@ -48,16 +48,17 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
-
-        Death();
+        Debug.Log("end game");
+        //Death();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
+        Debug.Log("asdasdasdasde");
 
-        Death();
-    }
+        //Death();
+    }   
 
     public void PlayerMovement(int index)
     {

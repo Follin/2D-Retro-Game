@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WorldMove : MonoBehaviour
 {
-    public Vector3 WorldMovementSpeed = new Vector3(0, -0.001f, 0);
+    [SerializeField]
+    private float WorldMovementSpeed = 0.01f;
 
     void Start()
     {
@@ -14,6 +15,6 @@ public class WorldMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position -= WorldMovementSpeed;
+        this.transform.position -= new Vector3(0, WorldMovementSpeed + (0.01f * LevelGenerator.NumberofSectionPassed),0);
     }
 }
