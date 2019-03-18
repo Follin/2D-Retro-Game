@@ -21,11 +21,6 @@ public class UltimateEnemy : MonoBehaviour
         _playerController = _player1.GetComponentInParent<PlayerController>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         _distanceToPlayer1 = _player1.transform.position.y - transform.position.y;
@@ -51,10 +46,9 @@ public class UltimateEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            _playerController.Death();
-        }
+        if (!collision.CompareTag("Player")) return;
+        
+        _playerController.Death();
     }
 
 }
