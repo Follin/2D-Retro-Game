@@ -48,11 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _index: 2
   _otherPlayer: {fileID: 0}
-  _gameManagerName: GameManager
-  _specialIsActivated: 1
+  specialIsActivated: 0
   _specialWaiting: 0
   _abilityAnimation: {fileID: 3880553524734492425}
-  _transferCooldown: 4
+  _transferCooldown: 0.5
   _scaleIncreaseAmount: 1.8
   _smallSpeed: 550
   _bigSpeed: 370
