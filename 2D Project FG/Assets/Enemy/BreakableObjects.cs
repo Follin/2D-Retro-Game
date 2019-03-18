@@ -65,7 +65,7 @@ public class BreakableObjects : MonoBehaviour
         {
             _playerController = collision.collider.GetComponentInParent<PlayerController>();
 
-            if (_playerController.specialIsActivated)
+            if (_playerController.SpecialIsActivated)
             {
                 GetComponent<BoxCollider2D>().enabled = false;
                 DestructionBehaviour();
