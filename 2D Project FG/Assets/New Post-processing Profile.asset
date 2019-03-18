@@ -51,7 +51,7 @@ MonoBehaviour:
     value: 0.2
   color:
     overrideState: 1
-    value: {r: 1, g: 0, b: 0.72458935, a: 1}
+    value: {r: 0.4268423, g: 0.4548056, b: 0.8301887, a: 1}
   fastMode:
     overrideState: 0
     value: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 1
-    value: -12
+    value: -4
   saturation:
     overrideState: 0
     value: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
     value: 0
   mixerRedOutRedIn:
     overrideState: 0
-    value: 100
+    value: 85
   mixerRedOutGreenIn:
     overrideState: 0
     value: 0

@@ -48,13 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _index: 1
   _otherPlayer: {fileID: 0}
-  specialIsActivated: 0
   _specialWaiting: 0
   _abilityAnimation: {fileID: 8685399859215518269}
-  _transferCooldown: 0.5
+  _transferCooldown: 0
   _scaleIncreaseAmount: 1.8
   _smallSpeed: 550
   _bigSpeed: 370
+  SpecialIsActivated: 0
 --- !u!50 &3918535683315281308
 Rigidbody2D:
   serializedVersion: 4
