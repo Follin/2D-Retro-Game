@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Image _deathScreen;
     [SerializeField] private Text _deathText;
     [SerializeField] private Text _scoreText; 
-    [SerializeField] private int _currentScore;
+    [HideInInspector] public int _currentScore;
     [Space(4)]
 
     [Header("Variables")]
