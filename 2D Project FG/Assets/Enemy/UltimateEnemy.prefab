@@ -60,7 +60,7 @@ MonoBehaviour:
   _player1: {fileID: 0}
   _player2: {fileID: 0}
   feedbackImage: {fileID: 2284137884679540759}
-  feedbackMaxDistance: 0
+  feedbackMaxDistance: 4
 --- !u!61 &4820915137764290551
 BoxCollider2D:
   m_ObjectHideFlags: 0
