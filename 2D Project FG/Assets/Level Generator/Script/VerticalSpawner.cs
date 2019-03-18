@@ -6,7 +6,9 @@ using UnityEngine;
 public enum LeftorRight
 {
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN
 }
 public class VerticalSpawner : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class VerticalSpawner : MonoBehaviour
     public GameObject SpawnObject;
     public float SpeedofEnemy = 1f;
 
+    private bool CanSpawn = true;
     private Vector3 Direction;
 
     void Start()
@@ -24,26 +27,34 @@ public class VerticalSpawner : MonoBehaviour
         {
             Direction = new Vector3(1, 0, 0);
         }
-        else
+        else if(VerticalDirection == LeftorRight.LEFT)
         {
             Direction = new Vector3(-1, 0, 0);
         }
+        else if (VerticalDirection == LeftorRight.UP)
+        {
+            Direction = new Vector3(0, 1, 0);
+        }
+        else if (VerticalDirection == LeftorRight.DOWN)
+        {
+            Direction = new Vector3(0, -1, 0);
+        }
         InvokeRepeating("Spawner", WhentoStartSpawn, SpawnInterval);
+        if(SpawnObject == null)
+        {
+            Debug.Log("Object to spawn in:" + transform.name + "is currently null");
+            CanSpawn = false;
+        }
     }
     void Spawner()
     {
         GameObject tempObject;
-        if (VerticalDirection == LeftorRight.RIGHT)
-        {
-                tempObject = Instantiate(SpawnObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation,transform);
+       if(CanSpawn)
+        { 
+                tempObject = Instantiate(SpawnObject, transform.position, transform.rotation,transform);
                 tempObject.GetComponent<MovingEnemy>().Direction = Direction;
-                tempObject.GetComponent<MovingEnemy>().Speed = SpeedofEnemy;         
-        }
-        if (VerticalDirection == LeftorRight.LEFT)
-        {
-                tempObject = Instantiate(SpawnObject, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation, transform);
-                tempObject.GetComponent<MovingEnemy>().Direction = Direction;
-                tempObject.GetComponent<MovingEnemy>().Speed = SpeedofEnemy;         
+                tempObject.GetComponent<MovingEnemy>().Speed = SpeedofEnemy;
+            Destroy(tempObject, 20/SpeedofEnemy);
         }
     }
 
