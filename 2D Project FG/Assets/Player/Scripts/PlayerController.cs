@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour
 
     private float _currentSpeed;
     private Rigidbody2D _rigidbody;
-    private bool _canTransfer;
+    public bool _canTransfer;
 
-    [HideInInspector]public bool SpecialIsActivated;
+    /*[HideInInspector]*/public bool SpecialIsActivated;
     private GameController _gameController;
 
 
@@ -86,41 +86,47 @@ public class PlayerController : MonoBehaviour
 
     private void SpecialAbility(int index)
     {
-        if (index == 1 && _canTransfer)
+        if (index == 1)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && _canTransfer)
             {
                 _specialWaiting = true;
-
+                
                 if (_otherPlayer._specialWaiting)
                 {
                     SpecialIsActivated = !SpecialIsActivated;
                     _canTransfer = false;
-                    Invoke("CanTransfer", _transferCooldown);
                 }
+                
             }
-            else
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             {
+                print("left shift up");
                 _specialWaiting = false;
+                CanTransfer();
             }
         }
 
-        if (index == 2 && _canTransfer)
+        if (index == 2)
         {
             if (Input.GetKey(KeyCode.RightShift) && _canTransfer)
             {
                 _specialWaiting = true;
-
+                
                 if (_otherPlayer._specialWaiting)
                 {
                     SpecialIsActivated = !SpecialIsActivated;
                     _canTransfer = false;
-                    Invoke("CanTransfer", _transferCooldown);
                 }
+                
             }
-            else
+            
+            if (Input.GetKeyUp(KeyCode.RightShift))
             {
+                print("right shift up");
                 _specialWaiting = false;
+                CanTransfer();
             }
         }
 

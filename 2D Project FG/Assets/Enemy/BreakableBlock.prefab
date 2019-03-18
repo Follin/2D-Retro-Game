@@ -769,6 +769,7 @@ MonoBehaviour:
   - {fileID: 1754333264}
   - {fileID: 1671156540}
   _breakForce: 5
+  _fadeSpeed: 0.1
 --- !u!61 &2673485105944420169
 BoxCollider2D:
   m_ObjectHideFlags: 0

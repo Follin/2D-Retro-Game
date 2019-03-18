@@ -6,7 +6,8 @@ public class BreakableObjects : MonoBehaviour
 {
     private PlayerController _playerController;
     [SerializeField] private GameObject[] _pieces;
-    [SerializeField] private float _breakForce; 
+    [SerializeField] private float _breakForce;
+    [SerializeField] private float _fadeSpeed;
 
 
     // Start is called before the first frame update
@@ -24,6 +25,8 @@ public class BreakableObjects : MonoBehaviour
     private void DestructionBehaviour()
     {
         int rDirection = 0;
+        StartCoroutine(DebrisFadeOut(_fadeSpeed, 1));
+
         foreach (GameObject obj in _pieces)
         {
             rDirection += 1;
@@ -57,6 +60,31 @@ public class BreakableObjects : MonoBehaviour
             }
 
         }
+
+        Invoke("DestroyObjects", 4);
+    }
+
+    private IEnumerator DebrisFadeOut(float speed, float maxTime)
+    {
+        float timeCounter = 0;
+
+        while (timeCounter < maxTime)
+        {
+            timeCounter += speed;
+            
+            foreach(GameObject obj in _pieces)
+            {
+                SpriteRenderer render = obj.GetComponent<SpriteRenderer>();
+                render.color = new Color(render.color.r, render.color.g, render.color.b, render.color.a - speed);
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+
+    }
+
+    private void DestroyObjects()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
