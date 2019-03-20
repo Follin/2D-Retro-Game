@@ -66,7 +66,6 @@ public class AudioComponent : MonoBehaviour
             track.volume = audioVolume;
             yield return new WaitForSeconds(0.0001f);
         }
-        print("Volume minimum reached");
       
     }
 }

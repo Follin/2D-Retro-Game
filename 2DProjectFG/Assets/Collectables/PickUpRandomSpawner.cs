@@ -21,21 +21,6 @@ public class PickUpRandomSpawner : MonoBehaviour
     {
         Instantiate(spawnTypes[rT], spawnLocs[rL]);
 
-        /*
-        if (canSpawn)
-        {
-            Instantiate(spawnTypes[rT], spawnLocs[rL]);
-            canSpawn = false;
-        }
-        */
     }
-
-    private void Update()
-    {
-        
-
-    }
-
-
 
 }

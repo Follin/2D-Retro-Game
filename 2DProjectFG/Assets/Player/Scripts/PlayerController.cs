@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
         _canTransfer = true;
         if (_index == 1)
             SpecialIsActivated = true;
+        else
+            SpecialIsActivated = false;
     }
 
     void Update()
@@ -115,48 +117,67 @@ public class PlayerController : MonoBehaviour
     private void SpecialAbility(int index)
     {
         if (index == 1)
-        {/*
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl) && SpecialIsActivated)
+            {
+                _otherPlayer.SpecialIsActivated = true;
+                SpecialIsActivated = false;
+            }
+        }
+
+        
+        if (index == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.RightControl) && SpecialIsActivated)
+            {
+                _otherPlayer.SpecialIsActivated = true;
+                SpecialIsActivated = false;
+            }
+        }
+        
+        /*
+        if (index == 1)
+        {
             if (Input.GetKey(KeyCode.LeftControl) && _canTransfer)
             {
                 _specialWaiting = true;
-                
                 if (_otherPlayer._specialWaiting)
                 {
                     SpecialIsActivated = !SpecialIsActivated;
                     _canTransfer = false;
                 }
             }
-
             if (Input.GetKeyUp(KeyCode.LeftControl))
             {
                 _specialWaiting = false;
                 _canTransfer = true;
             }
-            */
         }
-
+    
         if (index == 2)
         {
-            /*
+            if (Input.GetKeyDown(KeyCode.LeftControl) && SpecialIsActivated)
+            {
+                SpecialIsActivated = !SpecialIsActivated;
+                _otherPlayer.SpecialIsActivated = !_otherPlayer.SpecialIsActivated;
+            }
             if (Input.GetKey(KeyCode.RightControl) && _canTransfer)
             {
                 _specialWaiting = true;
-                
                 if (_otherPlayer._specialWaiting)
                 {
                     SpecialIsActivated = !SpecialIsActivated;
                     _canTransfer = false;
-
                 }
             }
-            
             if (Input.GetKeyUp(KeyCode.RightControl))
             {
                 _specialWaiting = false;
                 _canTransfer = true;
             }
-            */
         }
+    
+    */
 
         if (SpecialIsActivated)
         {

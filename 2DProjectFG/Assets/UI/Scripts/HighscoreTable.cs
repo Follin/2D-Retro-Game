@@ -19,7 +19,7 @@ public class HighscoreTable : MonoBehaviour
     [Header("Background")]
     [SerializeField] private Image _scoreSeperator;
 
-   [SerializeField] private List<Transform> _highscoreEntryTransformList;
+    private List<Transform> _highscoreEntryTransformList;
 
     private GameController _gameController;
 
@@ -45,12 +45,16 @@ public class HighscoreTable : MonoBehaviour
 
     private void SortAndShow(Highscores highscores)
     {
-        _highscoreEntryTransformList.ForEach(transfrom => Destroy(transfrom.gameObject)); // TODO: This doesn't function -- it doesn't clear the list!
+
+        // TODO:clear list -- at the end create it with new high score 
+        //_highscoreEntryTransformList.ForEach(transfrom => Destroy(transfrom.gameObject)); // TODO: This doesn't function -- it doesn't clear the list!
 
         _highscoreEntryTransformList = new List<Transform>();
 
         //TODO: check swap -- last won't show ingame
         // Sort entry list by score
+
+        // TODO: what if its the frist one??
         for (int i = 0; i < highscores.HighscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscores.HighscoreEntryList.Count; j++)
@@ -154,8 +158,7 @@ public class HighscoreTable : MonoBehaviour
 
         File.WriteAllText(_path, json);
 
-        //TODO: Remove comment
-        //SortAndShow(highscores); 
+        SortAndShow(highscores); 
     }
 
     public void AddHighscore(string name)
@@ -176,4 +179,14 @@ public class HighscoreTable : MonoBehaviour
         public int score;
         public string name;
     }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Delete))
+        {
+            System.IO.File.Delete(_path);
+            Debug.Log("reset highscore");
+        }
+    }
+
 }

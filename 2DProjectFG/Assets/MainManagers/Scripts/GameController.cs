@@ -59,12 +59,14 @@ public class GameController : MonoBehaviour
 
     }
 
+    //TODO assign to button instead... okay?
     public void RestartLevelTest()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
 
+    //TODO assign to button instead
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);

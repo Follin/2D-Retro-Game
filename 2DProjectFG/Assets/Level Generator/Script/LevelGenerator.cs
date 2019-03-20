@@ -12,7 +12,7 @@ public class LevelGenerator : MonoBehaviour
     public int MaxPlatforms = 3;
     private GameObject CameraReference;
     private float _platformHight;
-    public static int NumberofSectionPassed = 0;
+    public static int NumberofSectionPassed;
     [SerializeField] private bool EveryOther = true;
 
     private void Awake()
@@ -20,6 +20,8 @@ public class LevelGenerator : MonoBehaviour
         CameraReference = GameObject.Find("Main Camera");
         _generationPoint = CameraReference.transform.GetChild(0).transform;
         _destructionPoint = CameraReference.transform.GetChild(1).transform;
+        NumberofSectionPassed = 0;
+        Debug.Log(NumberofSectionPassed);
     }
     private void Start()
     {
