@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Setup")]
-    [SerializeField] private int _index;
-    [SerializeField] private PlayerController _otherPlayer;
-
+    public int _index;
+    public PlayerController _otherPlayer;
+    public Sprite _normalSprite, _shootSprite;
+    public SpriteRenderer _spriteRenderer;
     [Space(4)]
 
     [Header("Ability Function")]
@@ -34,16 +35,16 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
         _audioComponent = GetComponent<AudioComponent>();
+
+        if (_spriteRenderer != null)
+            _spriteRenderer.sprite = _normalSprite;
     }
 
     void Start()
     {
-
         _canTransfer = true;
-
         if (_index == 1)
             SpecialIsActivated = true;
-      
     }
 
     void Update()
@@ -59,8 +60,6 @@ public class PlayerController : MonoBehaviour
 
     void SoundPlayEngine()
     {
-       
-
         if (_audioComponent != null)
         {
             if (_rigidbody.velocity.x != 0 || _rigidbody.velocity.y != 0)
@@ -78,12 +77,7 @@ public class PlayerController : MonoBehaviour
                     _audioComponent.EngineFades(false);
                     canActivate = false;
                 }
-            }
-                
-
-            
-            
-                
+            }   
         }
     }
 
@@ -121,8 +115,8 @@ public class PlayerController : MonoBehaviour
     private void SpecialAbility(int index)
     {
         if (index == 1)
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && _canTransfer)
+        {/*
+            if (Input.GetKey(KeyCode.LeftControl) && _canTransfer)
             {
                 _specialWaiting = true;
                 
@@ -131,20 +125,20 @@ public class PlayerController : MonoBehaviour
                     SpecialIsActivated = !SpecialIsActivated;
                     _canTransfer = false;
                 }
-                
             }
 
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.LeftControl))
             {
-                print("left shift up");
                 _specialWaiting = false;
-                CanTransfer();
+                _canTransfer = true;
             }
+            */
         }
 
         if (index == 2)
         {
-            if (Input.GetKey(KeyCode.RightShift) && _canTransfer)
+            /*
+            if (Input.GetKey(KeyCode.RightControl) && _canTransfer)
             {
                 _specialWaiting = true;
                 
@@ -152,34 +146,33 @@ public class PlayerController : MonoBehaviour
                 {
                     SpecialIsActivated = !SpecialIsActivated;
                     _canTransfer = false;
+
                 }
-                
             }
             
-            if (Input.GetKeyUp(KeyCode.RightShift))
+            if (Input.GetKeyUp(KeyCode.RightControl))
             {
-                print("right shift up");
                 _specialWaiting = false;
-                CanTransfer();
+                _canTransfer = true;
             }
+            */
         }
 
         if (SpecialIsActivated)
         {
             gameObject.transform.localScale = new Vector3(_scaleIncreaseAmount, _scaleIncreaseAmount, 1);
             _abilityAnimation.SetActive(true);
+            if (_spriteRenderer != null)
+                _spriteRenderer.sprite = _shootSprite;
         }
         else
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
             _abilityAnimation.SetActive(false);
+            if (_spriteRenderer != null)
+                _spriteRenderer.sprite = _normalSprite;
         }
 
-    }
-
-    private void CanTransfer()
-    {
-        _canTransfer = true;
     }
 
     public void Death()
@@ -192,7 +185,6 @@ public class PlayerController : MonoBehaviour
             //Player time continuum explosion
             Debug.Log("GAME OVER");
         }
-        
     }
 
 }

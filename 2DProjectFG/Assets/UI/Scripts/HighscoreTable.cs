@@ -161,6 +161,7 @@ public class HighscoreTable : MonoBehaviour
     public void AddHighscore(string name)
     {
         AddHighscoreEntry(_gameController.CurrentScore, name);
+
     }
 
     private struct Highscores

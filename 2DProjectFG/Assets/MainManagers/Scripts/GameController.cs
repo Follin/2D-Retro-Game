@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    [Header("Player Setup")]
+    [Header("Controller Setup")]
     [SerializeField] private Image _deathScreen;
     [SerializeField] private Text _deathText;
     [SerializeField] private Text _finalScoreText;
@@ -27,11 +27,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (lostGame)
-            RestartLevelTest();
-        else
-            */
+        if (!lostGame)
             ScoreUpdate();
     }
 
@@ -63,13 +59,15 @@ public class GameController : MonoBehaviour
 
     }
 
-    private void RestartLevelTest()
+    public void RestartLevelTest()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
-        }
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

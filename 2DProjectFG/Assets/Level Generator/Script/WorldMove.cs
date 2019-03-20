@@ -10,6 +10,7 @@ public class WorldMove : MonoBehaviour
     void Start()
     {
         WorldMovementSpeed = 2.5f;
+        LevelGenerator.NumberofSectionPassed = 0;
     }
 
     // Update is called once per frame

@@ -10,6 +10,7 @@ public enum LeftorRight
     UP,
     DOWN
 }
+
 public class VerticalSpawner : MonoBehaviour
 {
     public LeftorRight VerticalDirection = LeftorRight.RIGHT;
@@ -20,9 +21,19 @@ public class VerticalSpawner : MonoBehaviour
 
     private bool CanSpawn = true;
     private Vector3 Direction;
+    public int r;
+
 
     void Start()
     {
+        r = Random.Range(0, 10);
+
+        //decide if can spawn or not
+        if (r < 4)
+            CanSpawn = false;
+        else
+            CanSpawn = true;
+
         if (VerticalDirection == LeftorRight.RIGHT)
         {
             Direction = new Vector3(1, 0, 0);
@@ -39,22 +50,27 @@ public class VerticalSpawner : MonoBehaviour
         {
             Direction = new Vector3(0, -1, 0);
         }
+
+
         InvokeRepeating("Spawner", WhentoStartSpawn, SpawnInterval);
+
         if(SpawnObject == null)
         {
             Debug.Log("Object to spawn in:" + transform.name + "is currently null");
             CanSpawn = false;
         }
     }
+
     void Spawner()
     {
         GameObject tempObject;
-       if(CanSpawn)
-        { 
-                tempObject = Instantiate(SpawnObject, transform.position, transform.rotation,transform);
-                tempObject.GetComponent<MovingEnemy>().Direction = Direction;
-                tempObject.GetComponent<MovingEnemy>().Speed = SpeedofEnemy;
-            Destroy(tempObject, 20/SpeedofEnemy);
+
+        if (CanSpawn)
+        {
+            tempObject = Instantiate(SpawnObject, transform.position, transform.rotation, transform);
+            tempObject.GetComponent<MovingEnemy>().Direction = Direction;
+            tempObject.GetComponent<MovingEnemy>().Speed = SpeedofEnemy;
+            Destroy(tempObject, 20 / SpeedofEnemy);
         }
     }
 

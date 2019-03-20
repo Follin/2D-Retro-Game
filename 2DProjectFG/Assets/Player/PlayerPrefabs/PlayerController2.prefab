@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3663319332820577359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9059737513173056209}
+  m_Layer: 0
+  m_Name: Origin2
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9059737513173056209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663319332820577359}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.20499992, y: 0.464, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6742710274005610748}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5739293651964545816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6652191910809491028}
+  m_Layer: 0
+  m_Name: Origin1
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6652191910809491028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739293651964545816}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.231, y: 0.469, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6742710274005610748}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6742710274005610745
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,6 +72,7 @@ GameObject:
   - component: {fileID: 6742710274005610747}
   - component: {fileID: 6742710274005610746}
   - component: {fileID: 8383265007145896791}
+  - component: {fileID: 3895456564465072963}
   - component: {fileID: 1926125784}
   m_Layer: 0
   m_Name: PlayerController2
@@ -33,6 +94,8 @@ Transform:
   m_Children:
   - {fileID: 3880553524734492426}
   - {fileID: 6742710275039313609}
+  - {fileID: 6652191910809491028}
+  - {fileID: 9059737513173056209}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,12 +113,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _index: 2
   _otherPlayer: {fileID: 0}
+  _normalSprite: {fileID: 21300000, guid: e8b833197b3067b42a6f3285d7057877, type: 3}
+  _shootSprite: {fileID: 21300000, guid: d478aabc1de1dae4fa8e2f5a52540111, type: 3}
+  _spriteRenderer: {fileID: 6742710275039313611}
   _specialWaiting: 0
   _abilityAnimation: {fileID: 3880553524734492425}
   _transferCooldown: 0
-  _scaleIncreaseAmount: 1.8
+  _scaleIncreaseAmount: 1.1
   _smallSpeed: 550
-  _bigSpeed: 370
+  _bigSpeed: 550
   _canTransfer: 0
   SpecialIsActivated: 0
   canActivate: 0
@@ -92,6 +158,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d432a831b00efc74685793aec8c1ed58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3895456564465072963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742710274005610745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94fa0a0ee64c39a4aab553d5c2c378f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileSpeed: 10
+  _fireRate: 0.1
+  origin1: {fileID: 6652191910809491028}
+  origin2: {fileID: 9059737513173056209}
+  _projectilePrefab: {fileID: 5933288260436947764, guid: 8fae8d40da62a7b4da9b7f41d8d29f89,
+    type: 3}
 --- !u!82 &1926125784
 AudioSource:
   m_ObjectHideFlags: 0
@@ -102,8 +186,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: a4f1ed0b7f810714c966f21602362815, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

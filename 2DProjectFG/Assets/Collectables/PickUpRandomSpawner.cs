@@ -5,27 +5,37 @@ using UnityEngine;
 public class PickUpRandomSpawner : MonoBehaviour
 {
 
-    public Transform[] pickUpLocs;
-    public GameObject[] pickUpTypes;
-    int rL = 0;
-    int rT = 0;
+    public Transform[] spawnLocs;
+    public GameObject[] spawnTypes;
+    [SerializeField] int rL = 0;
+    [SerializeField] int rT = 0;
 
     private void Awake()
     {
-        int rL = Random.Range(0, pickUpLocs.Length - 1);
-        int rT = Random.Range(0, pickUpTypes.Length - 1);
+        int rL = Random.Range(0, spawnLocs.Length - 1);
+        int rT = Random.Range(0, spawnTypes.Length - 1);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        print(rL);
-        print(rT);
+        Instantiate(spawnTypes[rT], spawnLocs[rL]);
 
-        Instantiate(pickUpTypes[rT], pickUpLocs[rL]);
+        /*
+        if (canSpawn)
+        {
+            Instantiate(spawnTypes[rT], spawnLocs[rL]);
+            canSpawn = false;
+        }
+        */
     }
 
-    
+    private void Update()
+    {
+        
 
- 
+    }
+
+
+
 }

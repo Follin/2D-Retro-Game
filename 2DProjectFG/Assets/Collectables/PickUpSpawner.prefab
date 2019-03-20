@@ -76,14 +76,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffe7ffa19aff3c4a86d21f4aa344e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpLocs:
+  spawnLocs:
   - {fileID: 7945669343082121132}
   - {fileID: 7945669342917791570}
   - {fileID: 7945669341580099717}
-  pickUpTypes:
+  spawnTypes:
   - {fileID: 4636957795291947841, guid: fcbe330a28be210469a65d4c555e7b42, type: 3}
   - {fileID: 4636957795291947841, guid: 18cdc7c11941cff4b89f27e8c4af6c09, type: 3}
   - {fileID: 2478836021574665471, guid: 9b8042280a7c93a4cb8ec1e9cfc60177, type: 3}
+  rL: 0
+  rT: 0
 --- !u!1 &7945669342917791571
 GameObject:
   m_ObjectHideFlags: 0

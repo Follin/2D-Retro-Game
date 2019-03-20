@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: VerticalSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -46,6 +46,7 @@ MonoBehaviour:
   VerticalDirection: 1
   SpawnInterval: 10
   WhentoStartSpawn: 0
-  SpawnObject: {fileID: 6642105520189498689, guid: 6eb0e63b57f70b547bf01d14ee9ac21e,
+  SpawnObject: {fileID: 713412162648483416, guid: ab24c6927884b974cba9e26704a9f4dd,
     type: 3}
-  SpeedofEnemy: 5
+  SpeedofEnemy: 3
+  r: 0
