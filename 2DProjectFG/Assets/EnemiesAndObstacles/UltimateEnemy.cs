@@ -46,8 +46,8 @@ public class UltimateEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player")) return;
-        
+        if (!collision.CompareTag("Player1") && !collision.CompareTag("Player2")) return;
+
         _playerController.Death();
     }
 

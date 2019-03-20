@@ -15,11 +15,20 @@ public class ScorePickUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            _gameController.CurrentScore += _scoreAdd;
-            Destroy(gameObject);
-        }
-            
+        if (!collision.CompareTag("Player1") && !collision.CompareTag("Player2")) return;
+
+        _gameController.CurrentScore += _scoreAdd;
+        Destroy(gameObject);
+
+  
+
+       // collision.CompareTag("Player1") ? _gameController.Player1Score++ : _gameController.Player2Score++;
+
+        if (collision.CompareTag("Player1"))
+            _gameController.Player1Score++;
+        else
+            _gameController.Player2Score++;
+
+
     }
 }

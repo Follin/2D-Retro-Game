@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,16 +11,21 @@ public class GameController : MonoBehaviour
     [SerializeField] private Image _deathScreen;
     [SerializeField] private Text _deathText;
     [SerializeField] private Text _finalScoreText;
+    [SerializeField] private Text _player1PickupsText;
+    [SerializeField] private Text _player2PickupsText;
     [SerializeField] private Text _scoreText; 
 
     //for pauses
-    [HideInInspector] public bool canPlay;
+    [NonSerialized] public bool canPlay;
     //players lose
-    [HideInInspector] public bool lostGame;
+    [NonSerialized] public bool lostGame;
 
-    [HideInInspector] public int CurrentScore;
+    [NonSerialized] public int CurrentScore;
 
-    private void Start()
+    [NonSerialized] public int Player1Score;
+    [NonSerialized] public int Player2Score;
+
+    private void Awake()
     {
         _deathScreen.gameObject.SetActive(false);
         _deathText.color = new Color(_deathText.color.r, _deathText.color.g, _deathText.color.b, 0);
@@ -39,7 +45,10 @@ public class GameController : MonoBehaviour
 
     public void DeathScreen()
     {
-        _finalScoreText.text = "Score: " + CurrentScore;
+        _finalScoreText.text = "Total Score: " + CurrentScore;
+        _player1PickupsText.text = "Player 1: " + Player1Score +" pickups";
+        _player2PickupsText.text = "Player 2: " + Player2Score +" pickups";
+
         StartCoroutine(DeathScreenBehaviour(0.01f, 1, _deathScreen, _deathText, _finalScoreText));
     }
 
@@ -59,14 +68,12 @@ public class GameController : MonoBehaviour
 
     }
 
-    //TODO assign to button instead... okay?
     public void RestartLevelTest()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
 
-    //TODO assign to button instead
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);

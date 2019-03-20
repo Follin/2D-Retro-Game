@@ -121,7 +121,7 @@ MonoBehaviour:
   _transferCooldown: 0
   _scaleIncreaseAmount: 1.1
   _smallSpeed: 550
-  _bigSpeed: 550
+  _bigSpeed: 500
   _canTransfer: 0
   SpecialIsActivated: 0
   canActivate: 0
@@ -186,7 +186,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a4f1ed0b7f810714c966f21602362815, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 6742710275039313610}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,6 +475,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514420474886585018, guid: 4e2dff7cbbcf2ea4cb1cdcb294d20e17,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514420474886585018, guid: 4e2dff7cbbcf2ea4cb1cdcb294d20e17,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.95960426
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514420474886585018, guid: 4e2dff7cbbcf2ea4cb1cdcb294d20e17,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e2dff7cbbcf2ea4cb1cdcb294d20e17, type: 3}
