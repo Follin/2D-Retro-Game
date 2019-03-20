@@ -57,6 +57,9 @@ public class BreakableObjects : MonoBehaviour
                 case 8:
                     obj.GetComponent<Rigidbody2D>().velocity = new Vector2(-_breakForce / 2, -_breakForce / 2);
                     break;
+                case 9:
+                    obj.GetComponent<Rigidbody2D>().velocity = new Vector2(_breakForce / 3, _breakForce / 3);
+                    break;
             }
 
         }

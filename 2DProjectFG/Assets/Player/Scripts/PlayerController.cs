@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Setup")]
     [SerializeField] private int _index;
     [SerializeField] private PlayerController _otherPlayer;
+
     [Space(4)]
 
     [Header("Ability Function")]
@@ -23,19 +24,21 @@ public class PlayerController : MonoBehaviour
     private float _currentSpeed;
     private Rigidbody2D _rigidbody;
     public bool _canTransfer;
-
-    /*[HideInInspector]*/public bool SpecialIsActivated;
+    public bool SpecialIsActivated;
     private GameController _gameController;
-
+    private AudioComponent _audioComponent;
+    public bool canActivate;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        _audioComponent = GetComponent<AudioComponent>();
     }
 
     void Start()
     {
+
         _canTransfer = true;
 
         if (_index == 1)
@@ -50,6 +53,37 @@ public class PlayerController : MonoBehaviour
         {
             PlayerMovement(_index);
             SpecialAbility(_index);
+            SoundPlayEngine();
+        }
+    }
+
+    void SoundPlayEngine()
+    {
+       
+
+        if (_audioComponent != null)
+        {
+            if (_rigidbody.velocity.x != 0 || _rigidbody.velocity.y != 0)
+            {
+                if (!canActivate)
+                {
+                    _audioComponent.EngineFades(true);
+                    canActivate = true;
+                }
+            }
+            else
+            {
+                if (canActivate)
+                {
+                    _audioComponent.EngineFades(false);
+                    canActivate = false;
+                }
+            }
+                
+
+            
+            
+                
         }
     }
 
@@ -150,11 +184,15 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-        _gameController.DeathScreen();
-        _gameController.lostGame = true;
-        _rigidbody.velocity = Vector2.zero;
-        //Player time continuum explosion
-        Debug.Log("GAME OVER");
+        if (!_gameController.lostGame)
+        {
+            _gameController.DeathScreen();
+            _gameController.lostGame = true;
+            _rigidbody.velocity = Vector2.zero;
+            //Player time continuum explosion
+            Debug.Log("GAME OVER");
+        }
+        
     }
 
 }

@@ -33,7 +33,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 11.2
+    value: 1
   threshold:
     overrideState: 1
     value: 0.8
@@ -50,7 +50,7 @@ MonoBehaviour:
     overrideState: 0
     value: 0.2
   color:
-    overrideState: 1
+    overrideState: 0
     value: {r: 0.4268423, g: 0.4548056, b: 0.8301887, a: 1}
   fastMode:
     overrideState: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     defaultState: 1
   dirtIntensity:
     overrideState: 1
-    value: 3
+    value: 1
 --- !u!114 &114259381179353764
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1

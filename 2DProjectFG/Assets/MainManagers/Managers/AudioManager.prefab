@@ -48,8 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3c086647fd4774b85844a61f60a9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainGameTrack: {fileID: 0}
+  mainMixer: {fileID: 24100000, guid: ed6070de53bd19f4c888efb62372187d, type: 2}
+  mainGameTrack: {fileID: 8300000, guid: b200b446f5596c04cb24440a5dc4e1be, type: 3}
   gameOverClip: {fileID: 0}
+  _audioSourceMainGameTrack: {fileID: 0}
+  _audioSourceMainGameSFX: {fileID: 0}
+  _audioSourceMenuTrack: {fileID: 0}
+  _audioSourceMenuSFX: {fileID: 0}
   keepFadingIn: 0
   keepFadingOut: 0
 --- !u!82 &3611661541178018785

@@ -40,6 +40,7 @@ public class LevelGenerator : MonoBehaviour
         InvokeRepeating("UpdatePlatforms", 0, 0.5f);
         _platformHight = _platforms[0].transform.localScale.y;
     }
+
     void UpdatePlatforms()
     {
         //if (PlatformsLIST.Count <= 0)
@@ -47,7 +48,6 @@ public class LevelGenerator : MonoBehaviour
         //    int randomNumber = Random.Range(0, _platforms.Length);
         //    PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation));
         //}
-
 
     }
 

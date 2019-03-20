@@ -27,9 +27,11 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (lostGame)
             RestartLevelTest();
         else
+            */
             ScoreUpdate();
     }
 

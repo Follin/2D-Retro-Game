@@ -24,13 +24,14 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(FadeIn(_audioSourceMainGameTrack, 0.02f, 1));
+        PlayInGameMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
-        DebugInput();
+        //DebugInput();
     }
 
     private void DebugInput()
@@ -42,13 +43,12 @@ public class AudioManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             //start in-game music
-            StartCoroutine(FadeIn(_audioSourceMainGameTrack, 0.08f, 1));
-            PlayInGameMusic();
+            StartCoroutine(FadeIn(_audioSourceMainGameTrack, 0.02f, 1));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             //death music
-            StartCoroutine(FadeOut(_audioSourceMainGameTrack, 0.2f, 0.001f));
+            StartCoroutine(FadeOut(_audioSourceMainGameTrack, 0.02f, 0));
             _audioSourceMainGameSFX.PlayOneShot(gameOverClip);
             //play endgame music
         }
@@ -73,12 +73,12 @@ public class AudioManager : MonoBehaviour
         keepFadingIn = true;
         keepFadingOut = false;
         track.volume = 0;
-        float audioVolume = _audioSourceMainGameTrack.volume;
+        float audioVolume = track.volume;
         while(track.volume < maxVolume && keepFadingIn)
         {
             audioVolume += speed;
             track.volume = audioVolume;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -91,10 +91,10 @@ public class AudioManager : MonoBehaviour
         {
             audioVolume -= speed;
             track.volume = audioVolume;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
         print("Volume minimum reached");
-        track.Stop();
+        //track.Stop();
     }
 
 }
