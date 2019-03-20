@@ -55,6 +55,11 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    private void LoseMusicTransition()
+    {
+        //TODO add in transition
+    }
+
     private void PlayInGameMusic()
     {
         StartCoroutine(MusicLoop(mainGameTrack.length));

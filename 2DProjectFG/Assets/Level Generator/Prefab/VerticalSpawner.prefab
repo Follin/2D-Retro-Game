@@ -48,5 +48,5 @@ MonoBehaviour:
   WhentoStartSpawn: 0
   SpawnObject: {fileID: 713412162648483416, guid: ab24c6927884b974cba9e26704a9f4dd,
     type: 3}
-  SpeedofEnemy: 3
+  SpeedofEnemy: 2.7
   r: 0
