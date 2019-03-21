@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22233dea1ddaf1459610aa3fb3bc420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathScreen: {fileID: 0}
-  deathText: {fileID: 0}
-  currentScore: 0
+  _deathScreen: {fileID: 0}
+  _deathText: {fileID: 0}
+  _finalScoreText: {fileID: 0}
+  _player1PickupsText: {fileID: 0}
+  _player2PickupsText: {fileID: 0}
+  _scoreText: {fileID: 0}

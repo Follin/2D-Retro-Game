@@ -199,11 +199,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
-    - target: {fileID: 2126150963523278200, guid: ca518daf712e9624383e1c4f8e7bcb73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2126150963523278202, guid: ca518daf712e9624383e1c4f8e7bcb73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -271,11 +266,6 @@ PrefabInstance:
       objectReference: {fileID: 1193119417}
     - target: {fileID: 2126150963523278203, guid: ca518daf712e9624383e1c4f8e7bcb73,
         type: 3}
-      propertyPath: _scoreText
-      value: 
-      objectReference: {fileID: 1390770422}
-    - target: {fileID: 2126150963523278203, guid: ca518daf712e9624383e1c4f8e7bcb73,
-        type: 3}
       propertyPath: _finalScoreText
       value: 
       objectReference: {fileID: 898214764}
@@ -289,6 +279,11 @@ PrefabInstance:
       propertyPath: _player2PickupsText
       value: 
       objectReference: {fileID: 1250221895}
+    - target: {fileID: 2126150963523278203, guid: ca518daf712e9624383e1c4f8e7bcb73,
+        type: 3}
+      propertyPath: _scoreText
+      value: 
+      objectReference: {fileID: 1390770422}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca518daf712e9624383e1c4f8e7bcb73, type: 3}
 --- !u!114 &166502601 stripped
@@ -314,11 +309,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InGameUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8376980391245670688, guid: 5b79aaff19fe53842a1e2d4aa5877be4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8376980391245670700, guid: 5b79aaff19fe53842a1e2d4aa5877be4,
         type: 3}
@@ -759,6 +749,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 158663916029467026, guid: 5d15d0b0e1026c94aa27d3405f156b57,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3595572131404729300, guid: 5d15d0b0e1026c94aa27d3405f156b57,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -844,11 +839,6 @@ PrefabInstance:
       propertyPath: mainGameTrack
       value: 
       objectReference: {fileID: 8300000, guid: b200b446f5596c04cb24440a5dc4e1be, type: 3}
-    - target: {fileID: 158663916029467026, guid: 5d15d0b0e1026c94aa27d3405f156b57,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d15d0b0e1026c94aa27d3405f156b57, type: 3}
 --- !u!1 &1043035009 stripped
