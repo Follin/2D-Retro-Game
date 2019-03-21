@@ -15,8 +15,8 @@ public class HighscoreTable : MonoBehaviour
     [SerializeField] private Text _nameText;
     [SerializeField] private Text _gotHighscoreText;
 
-    [Header("Background")]
-    [SerializeField] private Image _scoreSeperator;
+    //[Header("Background")]
+    //[SerializeField] private Image _scoreSeperator;
 
     private List<Transform> _highscoreEntryTransformList;
     private GameController _gameController;
@@ -103,7 +103,7 @@ public class HighscoreTable : MonoBehaviour
 
     private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList)
     {
-        float templateHeight = 40f;
+        float templateHeight = 30f;
 
         Transform entryTransform = Instantiate(_entryTemplate, container);
         RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
@@ -140,7 +140,7 @@ public class HighscoreTable : MonoBehaviour
         _nameText.GetComponent<Text>().text = name;
 
         //if(_scoreSeperator != null)
-            _scoreSeperator.gameObject.SetActive(rank % 2 == 0);
+        //_scoreSeperator.gameObject.SetActive(rank % 2 == 0);
 
         // Green highlight
         if (rank == 1)

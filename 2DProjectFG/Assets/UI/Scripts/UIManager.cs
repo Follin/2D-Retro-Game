@@ -17,4 +17,14 @@ public class UIManager : MonoBehaviour
         Debug.Log("Quit Game");
         Application.Quit();
     }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene(3);
+    }
 }
