@@ -6,7 +6,7 @@ using System.Linq;
 
 public class ScoreManager : MonoBehaviour
 {
-    //player score info
+    //player Score info
     public Dictionary<string, Dictionary <string, int> > _playerScores;
 
     public List<PlayerInfo> playerInfoList = new List<PlayerInfo>(); 
@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    //must be called when player enters their username - current score is then added into score
+    //must be called when player enters their username - current Score is then added into Score
     public void EnterNewUser(int score)
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -138,7 +138,7 @@ public class ScoreManager : MonoBehaviour
         _playerScores = new Dictionary<string, Dictionary<string, int>>();
     }
 
-    //returns player score according to username and scoretype arguments
+    //returns player Score according to username and scoretype arguments
     public int GetScore(string username, string scoreType)
     {
         InitialiazeDict();
@@ -146,7 +146,7 @@ public class ScoreManager : MonoBehaviour
         //if no username
         if(_playerScores.ContainsKey(username) == false)
         {
-            //no score record for this user
+            //no Score record for this user
             return 0;
         }
 
@@ -159,7 +159,7 @@ public class ScoreManager : MonoBehaviour
         return _playerScores[username] [scoreType];
     }
 
-    //sets player score
+    //sets player Score
     public void SetScore(string username, string scoreType, int value)
     {
         InitialiazeDict();
@@ -171,12 +171,12 @@ public class ScoreManager : MonoBehaviour
         _playerScores[username][scoreType] = value;
     }
 
-    //sets player score with added amount
+    //sets player Score with added amount
     public void ChangeScore (string username, string scoreType, int addAmount)
     {
         InitialiazeDict();
 
-        //get current score value from dictionary
+        //get current Score value from dictionary
         int currentScore = GetScore(username, scoreType);
         SetScore(username, scoreType, currentScore + addAmount);
 
@@ -193,7 +193,7 @@ public class ScoreManager : MonoBehaviour
         return names.OrderByDescending(n => GetScore(n, sortingScoreType)).ToArray(); 
     }
 
-    //adds to selected score via debug
+    //adds to selected Score via debug
     public void AddToScore(string currentUser, int scoreAddAmount)
     {
         ChangeScore(currentUser, highScore, scoreAddAmount);

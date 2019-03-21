@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     public void ScoreUpdate()
     {
         CurrentScore += 1;
-        _scoreText.text = "score " + CurrentScore;
+        _scoreText.text = "Score " + CurrentScore;
     }
 
     public void DeathScreen()

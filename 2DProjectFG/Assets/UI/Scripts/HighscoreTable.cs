@@ -20,10 +20,22 @@ public class HighscoreTable : MonoBehaviour
     [SerializeField] private Image _scoreSeperator;
 
     private List<Transform> _highscoreEntryTransformList;
-
     private GameController _gameController;
-
     private string _path;
+
+    //** List containing all highscores **//
+    private struct Highscores
+    {
+        public List<HighscoreEntry> HighscoreEntryList;
+    }
+
+    //** Represents a single highscore entry **//
+    [System.Serializable]
+    public struct HighscoreEntry
+    {
+        public int Score;
+        public string Name;
+    }
 
     void Awake()
     {
@@ -31,9 +43,7 @@ public class HighscoreTable : MonoBehaviour
         _gameController = FindObjectOfType<GameController>();
 
         _highscoreEntryTransformList = new List<Transform>();
-
         _entryTemplate.gameObject.SetActive(false);
-
 
         if(!File.Exists(_path)) return;
        
@@ -43,23 +53,36 @@ public class HighscoreTable : MonoBehaviour
         SortAndShow(highscores);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Delete))
+        {
+            System.IO.File.Delete(_path);
+            Debug.Log("Highscore is reset.");
+        }
+    }
+
     private void SortAndShow(Highscores highscores)
     {
 
-        // TODO:clear list -- at the end create it with new high score 
-        //_highscoreEntryTransformList.ForEach(transfrom => Destroy(transfrom.gameObject)); // TODO: This doesn't function -- it doesn't clear the list!
+        // TODO:clear list -- at the end create it with new high Score 
+        _highscoreEntryTransformList.ForEach(transfrom => DestroyImmediate(transfrom.gameObject)); // TODO: This doesn't function -- it doesn't clear the list!
+        _highscoreEntryTransformList.Clear(); //??
+     
+        /// empty list !!
+        Debug.Log("Highscore entry: " + _highscoreEntryTransformList.Count);
 
         _highscoreEntryTransformList = new List<Transform>();
 
         //TODO: check swap -- last won't show ingame
-        // Sort entry list by score
+        // Sort entry list by Score
 
         // TODO: what if its the frist one??
         for (int i = 0; i < highscores.HighscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscores.HighscoreEntryList.Count; j++)
             {
-                if (highscores.HighscoreEntryList[j].score > highscores.HighscoreEntryList[i].score)
+                if (highscores.HighscoreEntryList[j].Score > highscores.HighscoreEntryList[i].Score)
                 {
                     //Swap
                     HighscoreEntry temp = highscores.HighscoreEntryList[i];
@@ -67,11 +90,13 @@ public class HighscoreTable : MonoBehaviour
                     highscores.HighscoreEntryList[j] = temp;
                 }
             }
-        }
+        } 
         foreach (HighscoreEntry highscoreEntry in highscores.HighscoreEntryList)
         {
             CreateHighscoreEntryTransform(highscoreEntry, _entryContainer, _highscoreEntryTransformList);
         }
+        /// full list ???
+        Debug.Log("Highscore entry 2ND: " + _highscoreEntryTransformList.Count);
     }
 
     private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList)
@@ -106,10 +131,10 @@ public class HighscoreTable : MonoBehaviour
 
         _rankText.GetComponent<Text>().text = rankString;
 
-        int score = highscoreEntry.score;
+        int score = highscoreEntry.Score;
         _scoreText.GetComponent<Text>().text = score.ToString();
 
-        string name = highscoreEntry.name;
+        string name = highscoreEntry.Name;
         _nameText.GetComponent<Text>().text = name;
 
         _scoreSeperator.gameObject.SetActive(rank % 2 == 0);
@@ -131,10 +156,18 @@ public class HighscoreTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
+
+    //** Called after inserting team Name in menu **//
+    public void AddHighscore(string name)
+    {
+        AddHighscoreEntry(_gameController.CurrentScore, name);
+
+    }
+
     private void AddHighscoreEntry(int score, string name)
     {
         //Create highscore entry
-        HighscoreEntry highscoreEntry = new HighscoreEntry() {score = score, name = name};
+        HighscoreEntry highscoreEntry = new HighscoreEntry() {Score = score, Name = name};
 
         //Load saved highscores
         string jsonString = "";
@@ -150,43 +183,15 @@ public class HighscoreTable : MonoBehaviour
         if(highscores.HighscoreEntryList == null)
             highscores.HighscoreEntryList = new List<HighscoreEntry>();
 
-
         highscores.HighscoreEntryList.Add(highscoreEntry);
 
         // Save updated highscores
         string json = JsonUtility.ToJson(highscores);
-
         File.WriteAllText(_path, json);
 
+        //Update highscore
         SortAndShow(highscores); 
     }
 
-    public void AddHighscore(string name)
-    {
-        AddHighscoreEntry(_gameController.CurrentScore, name);
-
-    }
-
-    private struct Highscores
-    {
-        public List<HighscoreEntry> HighscoreEntryList;
-    }
-    
-    //* Represents a single highscore entry *//
-    [System.Serializable]
-    public struct HighscoreEntry
-    {
-        public int score;
-        public string name;
-    }
-
-    private void Update()
-    {
-        if(Input.GetKey(KeyCode.Delete))
-        {
-            System.IO.File.Delete(_path);
-            Debug.Log("reset highscore");
-        }
-    }
-
 }
+

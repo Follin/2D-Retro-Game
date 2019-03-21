@@ -5,29 +5,36 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _platforms;
+    [Header("Spawning Points")]
     [SerializeField] private Transform _generationPoint;
     [SerializeField] private Transform _destructionPoint;
-    List<GameObject> PlatformsLIST = new List<GameObject>();
-    public int MaxPlatforms = 3;
-    private GameObject CameraReference;
-    private float _platformHight;
+
+    [Space(10)]
+
+    [Tooltip("The max amout of sections in the scene at the same time")]
+    [SerializeField] private int _maxPlatforms = 3;
+
+    [Space(10)]
+    [SerializeField] private GameObject[] _platforms;
+    
+
+    
+    private List<GameObject> _platformsList = new List<GameObject>();
+    private bool _everyOther = true;
+    private float _distanceBetweenSections = 10.6f;
+
     public static int NumberofSectionPassed;
-    [SerializeField] private bool EveryOther = true;
+
 
     private void Awake()
     {
-        CameraReference = GameObject.Find("Main Camera");
-        _generationPoint = CameraReference.transform.GetChild(0).transform;
-        _destructionPoint = CameraReference.transform.GetChild(1).transform;
         NumberofSectionPassed = 0;
-        Debug.Log(NumberofSectionPassed);
     }
     private void Start()
     {
-        PlatformsLIST.Add(GameObject.Instantiate(_platforms[0], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation, gameObject.transform));
+        _platformsList.Add(Instantiate(_platforms[0], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation, gameObject.transform));
 
-        EveryOther = true;
+        _everyOther = true;
         if (_generationPoint == null)
         {
             Debug.LogError("There is no Generation Point attached to " + this);
@@ -39,53 +46,53 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
-        InvokeRepeating("UpdatePlatforms", 0, 0.5f);
-        _platformHight = _platforms[0].transform.localScale.y;
+        //InvokeRepeating("UpdatePlatforms", 0, 0.5f);
     }
 
     void UpdatePlatforms()
     {
-        //if (PlatformsLIST.Count <= 0)
+        //if (_platformsList.Count <= 0)
         //{
         //    int randomNumber = Random.Range(0, _platforms.Length);
-        //    PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation));
+        //    _platformsList.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation));
         //}
 
     }
 
     private void Update()
     {
-        for (int i = 0; i < PlatformsLIST.Count; i++) //Spawn new if there is room for more
+        for (int i = 0; i < _platformsList.Count; i++) //Spawn new if there is room for more
         {
-            if (PlatformsLIST[i].transform.position.y < _destructionPoint.transform.position.y)
+            if (_platformsList[i].transform.position.y < _destructionPoint.transform.position.y)
             {
-                Destroy(PlatformsLIST[i]);
-                PlatformsLIST.RemoveAt(i);
+                Destroy(_platformsList[i]);
+                _platformsList.RemoveAt(i);
                 NumberofSectionPassed++;
                 // int randomNumber = Random.Range(0, _platforms.Length);
-                // if (PlatformsLIST.Count < MaxPlatforms)
-                //     PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, transform.position.y + 16, transform.position.z), transform.rotation));
+                // if (_platformsList.Count < _maxPlatforms)
+                //     _platformsList.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, transform.position.y + 16, transform.position.z), transform.rotation));
             }
         }
-        for (int i = 0; PlatformsLIST.Count < MaxPlatforms; i++) //Spawn new if there is room for more
+
+        for (int i = 0; _platformsList.Count < _maxPlatforms; i++) //Spawn new if there is room for more
         {
 
             int randomNumber = Random.Range(0, _platforms.Length);
-            if (EveryOther == false)
+            if (_everyOther == false)
             {
-                PlatformsLIST.Add(GameObject.Instantiate(_platforms[0], new Vector3(transform.position.x, (PlatformsLIST[PlatformsLIST.Count - 1].transform.position.y) + 10.6f, transform.position.z), transform.rotation, gameObject.transform));
-                EveryOther = true;
+                _platformsList.Add(Instantiate(_platforms[0], new Vector3(transform.position.x, (_platformsList[_platformsList.Count - 1].transform.position.y) + _distanceBetweenSections, transform.position.z), transform.rotation, gameObject.transform));
+                _everyOther = true;
             }
             else
             {
-                PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, (PlatformsLIST[PlatformsLIST.Count - 1].transform.position.y) + 10.6f, transform.position.z), transform.rotation, gameObject.transform));
-                EveryOther = false;
+                _platformsList.Add(Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, (_platformsList[_platformsList.Count - 1].transform.position.y) + _distanceBetweenSections, transform.position.z), transform.rotation, gameObject.transform));
+                _everyOther = false;
             }
 
             //else
             //{
             //    int randomNumber = Random.Range(0, _platforms.Length);
-            //    PlatformsLIST.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y + 19.95f, transform.position.z), transform.rotation));
+            //    _platformsList.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y + 19.95f, transform.position.z), transform.rotation));
 
             //}
 

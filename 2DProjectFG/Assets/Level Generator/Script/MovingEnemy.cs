@@ -20,11 +20,9 @@ public class MovingEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            _gameController.lostGame = true;
-            _gameController.DeathScreen();
-            print("enemy dies");
-        }
+        if (!collision.CompareTag("Player1") && !collision.CompareTag("Player2")) return;
+
+        _gameController.lostGame = true;
+        _gameController.DeathScreen();
     }
 }

@@ -20,10 +20,6 @@ public class ScorePickUp : MonoBehaviour
         _gameController.CurrentScore += _scoreAdd;
         Destroy(gameObject);
 
-  
-
-       // collision.CompareTag("Player1") ? _gameController.Player1Score++ : _gameController.Player2Score++;
-
         if (collision.CompareTag("Player1"))
             _gameController.Player1Score++;
         else

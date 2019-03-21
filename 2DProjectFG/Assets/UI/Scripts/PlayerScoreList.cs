@@ -18,7 +18,7 @@ public class PlayerScoreList : MonoBehaviour
 
         if (_scoreManager == null)
         {
-            Debug.LogError("No score manager found");
+            Debug.LogError("No Score manager found");
             return;
         }
 

@@ -10,7 +10,7 @@ public class PlatformDestroyer : MonoBehaviour
     {
         if (!GameObject.Find("Platform Destruction Point"))
         {
-            Debug.LogError("There is no Destruction Point in the scene. Make sure the name of the point is: Platform Destruction Point");
+            Debug.LogError("There is no Destruction Point in the scene. Make sure the Name of the point is: Platform Destruction Point");
             return;
         }
 
