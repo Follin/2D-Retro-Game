@@ -11,7 +11,7 @@ public class HighscoreTable : MonoBehaviour
     [SerializeField] private Transform _entryContainer;
     [SerializeField] private Transform _entryTemplate;
 
-    [Header("Text Feild")]
+    [Header("Text field")]
     [SerializeField] private Text _rankText;
     [SerializeField] private Text _scoreText;
     [SerializeField] private Text _nameText;
@@ -21,6 +21,7 @@ public class HighscoreTable : MonoBehaviour
 
     private List<Transform> _highscoreEntryTransformList;
     private GameController _gameController;
+
     private string _path;
 
     //** List containing all highscores **//
@@ -69,15 +70,12 @@ public class HighscoreTable : MonoBehaviour
         _highscoreEntryTransformList.ForEach(transfrom => DestroyImmediate(transfrom.gameObject)); // TODO: This doesn't function -- it doesn't clear the list!
         _highscoreEntryTransformList.Clear(); //??
      
-        /// empty list !!
+        /// empty list !! -- not updating
         Debug.Log("Highscore entry: " + _highscoreEntryTransformList.Count);
 
         _highscoreEntryTransformList = new List<Transform>();
 
-        //TODO: check swap -- last won't show ingame
-        // Sort entry list by Score
-
-        // TODO: what if its the frist one??
+        // TODO: what if its the first one??
         for (int i = 0; i < highscores.HighscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscores.HighscoreEntryList.Count; j++)
@@ -95,8 +93,7 @@ public class HighscoreTable : MonoBehaviour
         {
             CreateHighscoreEntryTransform(highscoreEntry, _entryContainer, _highscoreEntryTransformList);
         }
-        /// full list ???
-        Debug.Log("Highscore entry 2ND: " + _highscoreEntryTransformList.Count);
+        
     }
 
     private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList)
