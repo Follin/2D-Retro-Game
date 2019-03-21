@@ -49,8 +49,8 @@ public class GameController : MonoBehaviour
     public void DeathScreen()
     {
         _finalScoreText.text = "Total Score: " + CurrentScore;
-        _player1PickupsText.text = "Player 1: " + Player1Score +" pickups";
-        _player2PickupsText.text = "Player 2: " + Player2Score +" pickups";
+        _player1PickupsText.text = Player1Score +" pickups";
+        _player2PickupsText.text = Player2Score +" pickups";
 
         StartCoroutine(DeathScreenBehaviour(0.01f, 1, _deathScreen, _deathText, _finalScoreText));
     }
