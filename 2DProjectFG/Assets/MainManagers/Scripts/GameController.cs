@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 {
     [Header("Controller Setup")]
     [SerializeField] private Image _deathScreen;
-    [SerializeField] private Text _deathText;
+    [SerializeField] private Image _deathText;
     [SerializeField] private Text _player1PickupsText;
     [SerializeField] private Text _player2PickupsText;
     [SerializeField] private Text _scoreText; 
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(DeathScreenBehaviour(0.01f, 1, _deathScreen, _deathText, _finalScoreText));
     }
 
-    IEnumerator DeathScreenBehaviour(float speed, float maxOpacity, Image deathScreen, Text deathText, Text finalScore)
+    IEnumerator DeathScreenBehaviour(float speed, float maxOpacity, Image deathScreen, Image deathText, Text finalScore)
     {
         _deathScreen.gameObject.SetActive(true);
         float speedTracker = 0;
