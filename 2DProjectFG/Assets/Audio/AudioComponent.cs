@@ -8,6 +8,7 @@ public class AudioComponent : MonoBehaviour
     bool keepFadingIn;
     bool keepFadingOut;
     private AudioSource _audioSource;
+    [SerializeField] private AudioClip engineClip, laserClip;
     //public AudioClip _audioClip;
 
     private void Awake()
@@ -31,6 +32,11 @@ public class AudioComponent : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha2))
             EngineFades(false);
 
+    }
+
+    public void LaserPlay()
+    {
+        _audioSource.PlayOneShot(laserClip);
     }
 
     public void EngineFades(bool fadeIn)

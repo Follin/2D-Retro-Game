@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreAdd: 150
+  pickUpText: {fileID: 8945205003015237370, guid: b7cbfb6e2e2dccd4f8c55a0990ea7392,
+    type: 3}

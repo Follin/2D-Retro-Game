@@ -7,6 +7,7 @@ public class ScorePickUp : MonoBehaviour
 
     [SerializeField] private int _scoreAdd;
     private GameController _gameController;
+    [SerializeField] private GameObject pickUpText;
 
     private void Start()
     {
@@ -18,6 +19,8 @@ public class ScorePickUp : MonoBehaviour
         if (!collision.CompareTag("Player1") && !collision.CompareTag("Player2")) return;
 
         _gameController.CurrentScore += _scoreAdd;
+        Instantiate(pickUpText, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
 
         if (collision.CompareTag("Player1"))

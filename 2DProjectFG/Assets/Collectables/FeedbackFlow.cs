@@ -7,6 +7,14 @@ public class FeedbackFlow : MonoBehaviour
     public Transform UIScoreText;
     public Camera mainCamera;
     public float ShrinkRate = 1f;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+        UIScoreText = GameObject.Find("ScoreText").transform;
+
+    }
+
     void Update()
     {
         transform.localScale -= (new Vector3(ShrinkRate, ShrinkRate, ShrinkRate) * Time.deltaTime);

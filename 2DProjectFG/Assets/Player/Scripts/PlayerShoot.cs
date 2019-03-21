@@ -13,6 +13,8 @@ public class PlayerShoot : MonoBehaviour
     private GameController _gameController;
     private PlayerController _playerController;
 
+    private AudioComponent _audioComponent;
+
     // Start is called before the first frame update
     void Start()
     {
