@@ -46,3 +46,5 @@ MonoBehaviour:
   _scoreAdd: 150
   pickUpText: {fileID: 8945205003015237370, guid: b7cbfb6e2e2dccd4f8c55a0990ea7392,
     type: 3}
+  pickUpScoreText: {fileID: 7976489215901558011, guid: 74d4a65478924f8408d47352f5f1ee4d,
+    type: 3}
