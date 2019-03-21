@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioComponent : MonoBehaviour
 {
@@ -9,29 +10,31 @@ public class AudioComponent : MonoBehaviour
     bool keepFadingOut;
     private AudioSource _audioSource;
     [SerializeField] private AudioClip engineClip, laserClip;
-    //public AudioClip _audioClip;
+    [SerializeField] private AudioMixer mainMixer;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.outputAudioMixerGroup = mainMixer.FindMatchingGroups("SFX")[0];
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //_audioSource.PlayOneShot(_audioClip);
-        _audioSource.volume = 0;
+        _audioSource.volume = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKey(KeyCode.Alpha1))
             EngineFades(true);
 
         if (Input.GetKey(KeyCode.Alpha2))
             EngineFades(false);
-
+        */
     }
 
     public void LaserPlay()
@@ -39,6 +42,8 @@ public class AudioComponent : MonoBehaviour
         _audioSource.PlayOneShot(laserClip);
     }
 
+
+    /*
     public void EngineFades(bool fadeIn)
     { 
         if (fadeIn)
@@ -74,4 +79,5 @@ public class AudioComponent : MonoBehaviour
         }
       
     }
+    */
 }

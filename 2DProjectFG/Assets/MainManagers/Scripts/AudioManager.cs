@@ -15,6 +15,11 @@ public class AudioManager : MonoBehaviour
     public bool keepFadingIn;
     public bool keepFadingOut;
 
+    [SerializeField] private AudioClip pickUpClip, abilitySwapClip;
+    [SerializeField] private AudioClip[] explosionClip;
+    //public AudioClip _audioClip;
+    private bool canPlayExplosion;
+
     private void Awake()
     {
         _audioSourceMainGameTrack.outputAudioMixerGroup = mainMixer.FindMatchingGroups("Music")[0];
@@ -24,6 +29,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canPlayExplosion = true;
         StartCoroutine(FadeIn(_audioSourceMainGameTrack, 0.02f, 1));
         PlayInGameMusic();
     }
@@ -32,6 +38,34 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         //DebugInput();
+    }
+
+    public void ExplosionPlay()
+    {
+        if (canPlayExplosion)
+        {
+            _audioSourceMainGameSFX.volume = 0.8f;
+            int r = Random.Range(0, explosionClip.Length - 1);
+            _audioSourceMainGameSFX.PlayOneShot(explosionClip[r]);
+            Invoke("CanPlayExplosionToTrue", 0.4f);
+        }
+
+    }
+    private void CanPlayExplosionToTrue()
+    {
+        canPlayExplosion = true;
+    }
+
+    public void PickUpPlay()
+    {
+        _audioSourceMainGameSFX.volume = 1;
+        _audioSourceMainGameSFX.PlayOneShot(pickUpClip);
+    }
+
+    public void AbilitySwapPlay()
+    {
+        _audioSourceMainGameSFX.volume = 1f;
+        _audioSourceMainGameSFX.PlayOneShot(abilitySwapClip);
     }
 
     private void DebugInput()

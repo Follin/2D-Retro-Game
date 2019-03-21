@@ -15,7 +15,7 @@ public class WorldMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position -= (new Vector3(0, WorldMovementSpeed + (0.35f * LevelGenerator.NumberofSectionPassed),0) * Time.deltaTime);
+        this.transform.position -= (new Vector3(0, WorldMovementSpeed + (0.3f * LevelGenerator.NumberofSectionPassed),0) * Time.deltaTime);
         
     }
 }

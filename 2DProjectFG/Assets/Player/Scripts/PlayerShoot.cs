@@ -18,6 +18,7 @@ public class PlayerShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _audioComponent = GetComponent<AudioComponent>();
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
         _playerController = GetComponent<PlayerController>();
     }
@@ -44,6 +45,8 @@ public class PlayerShoot : MonoBehaviour
 
                 proj1.GetComponent<Rigidbody2D>().velocity = new Vector3(0, _projectileSpeed, 0);
                 proj2.GetComponent<Rigidbody2D>().velocity = new Vector3(0, _projectileSpeed, 0);
+
+                _audioComponent.LaserPlay();
             }
         }
 
@@ -58,6 +61,8 @@ public class PlayerShoot : MonoBehaviour
 
                 proj1.GetComponent<Rigidbody2D>().velocity = new Vector3(0, _projectileSpeed, 0);
                 proj2.GetComponent<Rigidbody2D>().velocity = new Vector3(0, _projectileSpeed, 0);
+
+                _audioComponent.LaserPlay();
             }
         }
 

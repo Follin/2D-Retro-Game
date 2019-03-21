@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpeed: 10
-  _fireRate: 0.1
+  _fireRate: 0.2
   origin1: {fileID: 1554963079713336161}
   origin2: {fileID: 6998709818793039754}
   _projectilePrefab: {fileID: 5933288260436947764, guid: 8fae8d40da62a7b4da9b7f41d8d29f89,
@@ -146,6 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d432a831b00efc74685793aec8c1ed58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  engineClip: {fileID: 8300000, guid: 003f16afb0ff3ba43950a220762c8feb, type: 3}
+  laserClip: {fileID: 8300000, guid: 291aee41cb174cf4b848e4ca2af95111, type: 3}
+  mainMixer: {fileID: 24100000, guid: ed6070de53bd19f4c888efb62372187d, type: 2}
 --- !u!82 &1043035010
 AudioSource:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public bool SpecialIsActivated;
     private GameController _gameController;
     private AudioComponent _audioComponent;
+    private AudioManager _audioManager;
     public bool canActivate;
 
     private void Awake()
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
         _audioComponent = GetComponent<AudioComponent>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         if (_spriteRenderer != null)
             _spriteRenderer.sprite = _normalSprite;
@@ -68,7 +70,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!canActivate)
                 {
-                    _audioComponent.EngineFades(true);
+                    //_audioComponent.EngineFades(true);
                     canActivate = true;
                 }
             }
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (canActivate)
                 {
-                    _audioComponent.EngineFades(false);
+                    //_audioComponent.EngineFades(false);
                     canActivate = false;
                 }
             }   
@@ -121,6 +123,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftControl) && SpecialIsActivated)
             {
                 _otherPlayer.SpecialIsActivated = true;
+                _audioManager.AbilitySwapPlay();
                 SpecialIsActivated = false;
             }
         }
@@ -131,6 +134,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.RightControl) && SpecialIsActivated)
             {
                 _otherPlayer.SpecialIsActivated = true;
+                _audioManager.AbilitySwapPlay();
                 SpecialIsActivated = false;
             }
         }

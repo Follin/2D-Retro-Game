@@ -8,11 +8,18 @@ public class BreakableObjects : MonoBehaviour
     [SerializeField] private GameObject[] _pieces;
     [SerializeField] private float _breakForce;
     [SerializeField] private float _fadeSpeed;
+    private AudioManager _audioManager;
+
+    private void Awake()
+    {
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void DestructionBehaviour()
     {
         int rDirection = 0;
         StartCoroutine(DebrisFadeOut(_fadeSpeed, 1));
+        _audioManager.ExplosionPlay();
 
         foreach (GameObject obj in _pieces)
         {
@@ -64,7 +71,7 @@ public class BreakableObjects : MonoBehaviour
             
             foreach(GameObject obj in _pieces)
             {
-                SpriteRenderer render = obj.GetComponent<SpriteRenderer>();
+                Material render = obj.GetComponent<Material>();
                 render.color = new Color(render.color.r, render.color.g, render.color.b, render.color.a - speed);
             }
             yield return new WaitForSeconds(0.1f);

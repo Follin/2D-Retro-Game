@@ -8,10 +8,12 @@ public class ScorePickUp : MonoBehaviour
     [SerializeField] private int _scoreAdd;
     private GameController _gameController;
     [SerializeField] private GameObject pickUpText;
+    private AudioManager _audioManager;
 
     private void Start()
     {
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,6 +22,7 @@ public class ScorePickUp : MonoBehaviour
 
         _gameController.CurrentScore += _scoreAdd;
         Instantiate(pickUpText, transform.position, Quaternion.identity);
+        _audioManager.PickUpPlay();
 
         Destroy(gameObject);
 
