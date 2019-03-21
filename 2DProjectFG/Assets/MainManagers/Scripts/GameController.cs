@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
     [Header("Controller Setup")]
     [SerializeField] private Image _deathScreen;
     [SerializeField] private Text _deathText;
-    [SerializeField] private Text _finalScoreText;
     [SerializeField] private Text _player1PickupsText;
     [SerializeField] private Text _player2PickupsText;
     [SerializeField] private Text _scoreText; 
@@ -25,10 +24,14 @@ public class GameController : MonoBehaviour
     [NonSerialized] public int Player1Score;
     [NonSerialized] public int Player2Score;
 
+    public Text _finalScoreText;
+
+
     private void Awake()
     {
         _deathScreen.gameObject.SetActive(false);
         _deathText.color = new Color(_deathText.color.r, _deathText.color.g, _deathText.color.b, 0);
+
     }
 
     private void Update()

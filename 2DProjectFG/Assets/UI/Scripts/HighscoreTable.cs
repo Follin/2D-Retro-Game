@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
@@ -11,10 +9,11 @@ public class HighscoreTable : MonoBehaviour
     [SerializeField] private Transform _entryContainer;
     [SerializeField] private Transform _entryTemplate;
 
-    [Header("Text field")]
+    [Header("Text fields")]
     [SerializeField] private Text _rankText;
     [SerializeField] private Text _scoreText;
     [SerializeField] private Text _nameText;
+    [SerializeField] private Text _gotHighscoreText;
 
     [Header("Background")]
     [SerializeField] private Image _scoreSeperator;
@@ -23,6 +22,7 @@ public class HighscoreTable : MonoBehaviour
     private GameController _gameController;
 
     private string _path;
+    private int _currentHighscore;
 
     //** List containing all highscores **//
     private struct Highscores
@@ -52,6 +52,15 @@ public class HighscoreTable : MonoBehaviour
         Highscores highscores =  JsonUtility.FromJson<Highscores>(jsonString);
 
         SortAndShow(highscores);
+
+        if(_gotHighscoreText == null) return;
+
+        if(_gameController.CurrentScore > _currentHighscore)
+            _gotHighscoreText.gameObject.SetActive(true);
+        else
+            _gotHighscoreText.gameObject.SetActive(false);
+
+
     }
 
     private void Update()
@@ -65,17 +74,11 @@ public class HighscoreTable : MonoBehaviour
 
     private void SortAndShow(Highscores highscores)
     {
-
-        // TODO:clear list -- at the end create it with new high Score 
-        _highscoreEntryTransformList.ForEach(transfrom => DestroyImmediate(transfrom.gameObject)); // TODO: This doesn't function -- it doesn't clear the list!
-        _highscoreEntryTransformList.Clear(); //??
-     
-        /// empty list !! -- not updating
-        Debug.Log("Highscore entry: " + _highscoreEntryTransformList.Count);
+        _highscoreEntryTransformList.ForEach(transfrom => DestroyImmediate(transfrom.gameObject)); 
+        _highscoreEntryTransformList.Clear(); 
 
         _highscoreEntryTransformList = new List<Transform>();
 
-        // TODO: what if its the first one??
         for (int i = 0; i < highscores.HighscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscores.HighscoreEntryList.Count; j++)
@@ -88,12 +91,14 @@ public class HighscoreTable : MonoBehaviour
                     highscores.HighscoreEntryList[j] = temp;
                 }
             }
-        } 
+        }
+
+        _currentHighscore = highscores.HighscoreEntryList[0].Score;
+
         foreach (HighscoreEntry highscoreEntry in highscores.HighscoreEntryList)
         {
             CreateHighscoreEntryTransform(highscoreEntry, _entryContainer, _highscoreEntryTransformList);
         }
-        
     }
 
     private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList)
@@ -104,7 +109,7 @@ public class HighscoreTable : MonoBehaviour
         RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
         entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * transformList.Count);
         entryTransform.gameObject.SetActive(true);
-
+       
         int rank = transformList.Count + 1;
         string rankString;
 
@@ -149,16 +154,14 @@ public class HighscoreTable : MonoBehaviour
             _scoreText.GetComponent<Text>().color = Color.white;
             _nameText.GetComponent<Text>().color = Color.white;
         }
-
+        
         transformList.Add(entryTransform);
     }
-
-
+    
     //** Called after inserting team Name in menu **//
     public void AddHighscore(string name)
     {
         AddHighscoreEntry(_gameController.CurrentScore, name);
-
     }
 
     private void AddHighscoreEntry(int score, string name)
@@ -190,5 +193,9 @@ public class HighscoreTable : MonoBehaviour
         SortAndShow(highscores); 
     }
 
+    public int GetCurrentHighscore()
+    {
+        return _currentHighscore;
+    }
 }
 
