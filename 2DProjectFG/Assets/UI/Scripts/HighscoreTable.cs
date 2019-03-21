@@ -139,7 +139,8 @@ public class HighscoreTable : MonoBehaviour
         string name = highscoreEntry.Name;
         _nameText.GetComponent<Text>().text = name;
 
-        _scoreSeperator.gameObject.SetActive(rank % 2 == 0);
+        //if(_scoreSeperator != null)
+            _scoreSeperator.gameObject.SetActive(rank % 2 == 0);
 
         // Green highlight
         if (rank == 1)

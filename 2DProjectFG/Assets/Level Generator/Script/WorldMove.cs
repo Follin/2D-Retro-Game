@@ -6,16 +6,19 @@ public class WorldMove : MonoBehaviour
 {
     [SerializeField]
     private float WorldMovementSpeed;
+    private GameController _gameController;
 
     void Start()
     {
+        _gameController = GameObject.Find("GameController").GetComponent<GameController>();
         WorldMovementSpeed = 2.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position -= (new Vector3(0, WorldMovementSpeed + (0.3f * LevelGenerator.NumberofSectionPassed),0) * Time.deltaTime);
+        if (!_gameController.lostGame)
+            this.transform.position -= (new Vector3(0, WorldMovementSpeed + (0.3f * LevelGenerator.NumberofSectionPassed),0) * Time.deltaTime);
         
     }
 }

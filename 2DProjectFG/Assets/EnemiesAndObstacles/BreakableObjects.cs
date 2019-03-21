@@ -18,7 +18,7 @@ public class BreakableObjects : MonoBehaviour
     private void DestructionBehaviour()
     {
         int rDirection = 0;
-        StartCoroutine(DebrisFadeOut(_fadeSpeed, 1));
+        //StartCoroutine(DebrisFadeOut(_fadeSpeed, 1));
         _audioManager.ExplosionPlay();
 
         foreach (GameObject obj in _pieces)

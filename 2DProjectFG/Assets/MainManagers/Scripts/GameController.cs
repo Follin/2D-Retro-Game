@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
 
     public void ScoreUpdate()
     {
-        CurrentScore += 1;
+        CurrentScore += 1; 
         _scoreText.text = "Score " + CurrentScore;
     }
 
