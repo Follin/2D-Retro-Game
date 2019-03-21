@@ -9,19 +9,6 @@ public class BreakableObjects : MonoBehaviour
     [SerializeField] private float _breakForce;
     [SerializeField] private float _fadeSpeed;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void DestructionBehaviour()
     {
         int rDirection = 0;
@@ -94,28 +81,5 @@ public class BreakableObjects : MonoBehaviour
     private void DestroyObjects()
     {
         Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /*
-        if (collision.collider.CompareTag("Laser"))
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-            DestructionBehaviour();
-        }
-        */
-        /*
-        if (collision.collider.CompareTag("Player") && collision.collider.GetComponentInParent<PlayerController>() != null)
-        {
-            _playerController = collision.collider.GetComponentInParent<PlayerController>();
-
-            if (_playerController.SpecialIsActivated)
-            {
-                GetComponent<BoxCollider2D>().enabled = false;
-                DestructionBehaviour();
-            }  
-        }
-        */
     }
 }
