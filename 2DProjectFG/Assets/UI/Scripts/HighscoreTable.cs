@@ -59,8 +59,6 @@ public class HighscoreTable : MonoBehaviour
             _gotHighscoreText.GetComponent<Text>().enabled = true;
         else
             _gotHighscoreText.GetComponent<Text>().enabled = false;
-
-
     }
 
     private void Update()
@@ -138,9 +136,6 @@ public class HighscoreTable : MonoBehaviour
 
         string name = highscoreEntry.Name;
         _nameText.GetComponent<Text>().text = name;
-
-        //if(_scoreSeperator != null)
-        //_scoreSeperator.gameObject.SetActive(rank % 2 == 0);
 
         // Green highlight
         if (rank == 1)

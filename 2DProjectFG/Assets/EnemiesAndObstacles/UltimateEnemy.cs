@@ -10,14 +10,10 @@ public class UltimateEnemy : MonoBehaviour
     [SerializeField] private SpriteRenderer feedbackImage;
     [SerializeField] private float feedbackMaxDistance; 
 
-
     private float _distanceToPlayer1, _distanceToPlayer2;
-
-    /* Decide what is going to change depending on who close the nearest player is the Ultimate enemy*/
 
     private void Awake()
     {
-        //doesn't matter which player we reference - either one will call death function
         _playerController = _player1.GetComponentInParent<PlayerController>();
     }
 

@@ -11,7 +11,7 @@ public class LevelGenerator : MonoBehaviour
 
     [Space(10)]
 
-    [Tooltip("The max amout of sections in the scene at the same time")]
+    [Tooltip("The max amount of sections in the scene at the same time")]
     [SerializeField] private int _maxPlatforms = 3;
 
     [Space(10)]
@@ -45,18 +45,6 @@ public class LevelGenerator : MonoBehaviour
             Debug.LogError("The array in " + this + " is null. Add Platforms to the array to generate platforms.");
             return;
         }
-
-        //InvokeRepeating("UpdatePlatforms", 0, 0.5f);
-    }
-
-    void UpdatePlatforms()
-    {
-        //if (_platformsList.Count <= 0)
-        //{
-        //    int randomNumber = Random.Range(0, _platforms.Length);
-        //    _platformsList.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y, transform.position.z), transform.rotation));
-        //}
-
     }
 
     private void Update()
@@ -68,9 +56,6 @@ public class LevelGenerator : MonoBehaviour
                 Destroy(_platformsList[i]);
                 _platformsList.RemoveAt(i);
                 NumberofSectionPassed++;
-                // int randomNumber = Random.Range(0, _platforms.Length);
-                // if (_platformsList.Count < _maxPlatforms)
-                //     _platformsList.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, transform.position.y + 16, transform.position.z), transform.rotation));
             }
         }
 
@@ -88,14 +73,6 @@ public class LevelGenerator : MonoBehaviour
                 _platformsList.Add(Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, (_platformsList[_platformsList.Count - 1].transform.position.y) + _distanceBetweenSections, transform.position.z), transform.rotation, gameObject.transform));
                 _everyOther = false;
             }
-
-            //else
-            //{
-            //    int randomNumber = Random.Range(0, _platforms.Length);
-            //    _platformsList.Add(GameObject.Instantiate(_platforms[randomNumber], new Vector3(transform.position.x, _generationPoint.position.y + 19.95f, transform.position.z), transform.rotation));
-
-            //}
-
         }
     }
 }
