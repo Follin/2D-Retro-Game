@@ -88,13 +88,13 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 3961929306025822186}
   _specialWaiting: 0
   _abilityAnimation: {fileID: 8685399859215518269}
-  _transferCooldown: 0
   _scaleIncreaseAmount: 1.1
-  _smallSpeed: 550
-  _bigSpeed: 500
+  _playerSpeed: 500
   _canTransfer: 0
   SpecialIsActivated: 0
   canActivate: 0
+  horizontal: Horizontal
+  vertical: Vertical
 --- !u!50 &3918535683315281308
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpeed: 10
-  _fireRate: 0.2
+  _fireRate: 0.16
   origin1: {fileID: 1554963079713336161}
   origin2: {fileID: 6998709818793039754}
   _projectilePrefab: {fileID: 5933288260436947764, guid: 8fae8d40da62a7b4da9b7f41d8d29f89,
