@@ -55,10 +55,10 @@ public class HighscoreTable : MonoBehaviour
 
         if(_gotHighscoreText == null) return;
 
-        if(_gameController.CurrentScore > _currentHighscore)
-            _gotHighscoreText.gameObject.SetActive(true);
+        if (_gameController.CurrentScore > _currentHighscore)
+            _gotHighscoreText.GetComponent<Text>().enabled = true;
         else
-            _gotHighscoreText.gameObject.SetActive(false);
+            _gotHighscoreText.GetComponent<Text>().enabled = false;
 
 
     }

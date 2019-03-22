@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        if (_deathScreen == null) return;
         _deathScreen.gameObject.SetActive(false);
         _deathText.color = new Color(_deathText.color.r, _deathText.color.g, _deathText.color.b, 0);
 

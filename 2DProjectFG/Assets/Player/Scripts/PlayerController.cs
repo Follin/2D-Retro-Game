@@ -14,15 +14,14 @@ public class PlayerController : MonoBehaviour
     [Header("Ability Function")]
     [SerializeField] private bool _specialWaiting;
     [SerializeField] private GameObject _abilityAnimation;
-    [SerializeField] private float _transferCooldown;
     [SerializeField] private float _scaleIncreaseAmount;
     [Space(4)]
 
     [Header("Movement")]
-    [SerializeField] private float _smallSpeed;
-    [SerializeField] private float _bigSpeed;
+    //[SerializeField] private float _smallSpeed;
+    //[SerializeField] private float _bigSpeed;
 
-    private float _currentSpeed;
+    [SerializeField] private float _playerSpeed;
     private Rigidbody2D _rigidbody;
     public bool _canTransfer;
     public bool SpecialIsActivated;
@@ -30,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private AudioComponent _audioComponent;
     private AudioManager _audioManager;
     public bool canActivate;
+    [SerializeField] private string horizontal, vertical;
 
     private void Awake()
     {
@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (!canActivate)
                 {
-                    //_audioComponent.EngineFades(true);
                     canActivate = true;
                 }
             }
@@ -78,7 +77,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (canActivate)
                 {
-                    //_audioComponent.EngineFades(false);
                     canActivate = false;
                 }
             }   
@@ -87,33 +85,10 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerMovement(int index)
     {
-        float deltaSmall = _smallSpeed * Time.deltaTime;
-        float deltaBig = _bigSpeed * Time.deltaTime;
-
-        if (SpecialIsActivated)
-            _currentSpeed = deltaBig;
-        else
-            _currentSpeed = deltaSmall;
-
-
-        if (index == 1)
-        {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
-            Vector2 move = new Vector2(h, v);
-            move = move.normalized * _currentSpeed;
-
-            _rigidbody.velocity = move;
-        }
-        else
-        {
-            float h1 = Input.GetAxisRaw("Horizontal1");
-            float v1 = Input.GetAxisRaw("Vertical1");
-            Vector2 move = new Vector2(h1, v1);
-            move = move.normalized * _currentSpeed;
-
-            _rigidbody.velocity = move;
-        }
+        float h = Input.GetAxisRaw(horizontal);
+        float v = Input.GetAxisRaw(vertical);
+        Vector2 move = new Vector2(h, v).normalized;
+        _rigidbody.velocity = move * _playerSpeed * Time.deltaTime;
     }
 
     private void SpecialAbility(int index)
@@ -127,8 +102,6 @@ public class PlayerController : MonoBehaviour
                 SpecialIsActivated = false;
             }
         }
-
-        
         if (index == 2)
         {
             if (Input.GetKeyDown(KeyCode.RightControl) && SpecialIsActivated)
@@ -138,50 +111,6 @@ public class PlayerController : MonoBehaviour
                 SpecialIsActivated = false;
             }
         }
-        
-        /*
-        if (index == 1)
-        {
-            if (Input.GetKey(KeyCode.LeftControl) && _canTransfer)
-            {
-                _specialWaiting = true;
-                if (_otherPlayer._specialWaiting)
-                {
-                    SpecialIsActivated = !SpecialIsActivated;
-                    _canTransfer = false;
-                }
-            }
-            if (Input.GetKeyUp(KeyCode.LeftControl))
-            {
-                _specialWaiting = false;
-                _canTransfer = true;
-            }
-        }
-    
-        if (index == 2)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftControl) && SpecialIsActivated)
-            {
-                SpecialIsActivated = !SpecialIsActivated;
-                _otherPlayer.SpecialIsActivated = !_otherPlayer.SpecialIsActivated;
-            }
-            if (Input.GetKey(KeyCode.RightControl) && _canTransfer)
-            {
-                _specialWaiting = true;
-                if (_otherPlayer._specialWaiting)
-                {
-                    SpecialIsActivated = !SpecialIsActivated;
-                    _canTransfer = false;
-                }
-            }
-            if (Input.GetKeyUp(KeyCode.RightControl))
-            {
-                _specialWaiting = false;
-                _canTransfer = true;
-            }
-        }
-    
-    */
 
         if (SpecialIsActivated)
         {

@@ -686,6 +686,21 @@ PrefabInstance:
       propertyPath: _bigSpeed
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 412412253433083977, guid: 4a07cd67f14105a468e8a8a818697095,
+        type: 3}
+      propertyPath: horizontal
+      value: Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 412412253433083977, guid: 4a07cd67f14105a468e8a8a818697095,
+        type: 3}
+      propertyPath: vertical
+      value: Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 412412253433083977, guid: 4a07cd67f14105a468e8a8a818697095,
+        type: 3}
+      propertyPath: _playerSpeed
+      value: 7500
+      objectReference: {fileID: 0}
     - target: {fileID: 381454007893844946, guid: 4a07cd67f14105a468e8a8a818697095,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -774,6 +789,26 @@ PrefabInstance:
         type: 3}
       propertyPath: _smallSpeed
       value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742710274005610747, guid: 2e3e0c1cf2029d143a01eec275441263,
+        type: 3}
+      propertyPath: horizontal
+      value: Horizontal1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742710274005610747, guid: 2e3e0c1cf2029d143a01eec275441263,
+        type: 3}
+      propertyPath: vertical
+      value: Vertical1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742710274005610747, guid: 2e3e0c1cf2029d143a01eec275441263,
+        type: 3}
+      propertyPath: _canTransfer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742710274005610747, guid: 2e3e0c1cf2029d143a01eec275441263,
+        type: 3}
+      propertyPath: _playerSpeed
+      value: 7500
       objectReference: {fileID: 0}
     - target: {fileID: 6742710274005610748, guid: 2e3e0c1cf2029d143a01eec275441263,
         type: 3}
@@ -864,6 +899,11 @@ PrefabInstance:
     - target: {fileID: 1190213322559036339, guid: 5d15d0b0e1026c94aa27d3405f156b57,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 158663916029467026, guid: 5d15d0b0e1026c94aa27d3405f156b57,
+        type: 3}
+      propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3595572131404729300, guid: 5d15d0b0e1026c94aa27d3405f156b57,
@@ -991,11 +1031,6 @@ PrefabInstance:
       propertyPath: explosionClip.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: 26c677f7ad933db499e14e16c8ccf1ec, type: 3}
-    - target: {fileID: 158663916029467026, guid: 5d15d0b0e1026c94aa27d3405f156b57,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d15d0b0e1026c94aa27d3405f156b57, type: 3}
 --- !u!1 &1043035009 stripped
