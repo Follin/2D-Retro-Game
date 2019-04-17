@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _audioSourceMainGameTrack;
     [SerializeField] private AudioSource _audioSourceMainGameSFX;
     [SerializeField] private AudioSource _audioSourceMenuTrack;
-    [SerializeField] private AudioSource _audioSourceMenuSFX; 
+    [SerializeField] private AudioSource _audioSourceMenuSFX;
+    [SerializeField] private float mainTrackLoopTime;
     public bool keepFadingIn;
     public bool keepFadingOut;
 
@@ -96,7 +97,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayInGameMusic()
     {
-        StartCoroutine(MusicLoop(mainGameTrack.length));
+        StartCoroutine(MusicLoop(mainTrackLoopTime));
     }
 
     IEnumerator MusicLoop(float seconds)
