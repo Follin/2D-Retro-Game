@@ -69,6 +69,13 @@ public class AudioManager : MonoBehaviour
         _audioSourceMainGameSFX.PlayOneShot(abilitySwapClip);
     }
 
+    public void PlayDeathSound()
+    {
+        _audioSourceMainGameSFX.volume = 0.3f;
+        _audioSourceMainGameSFX.PlayOneShot(gameOverClip);
+        //print("Death Sound");
+    }
+
     private void DebugInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

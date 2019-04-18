@@ -29,7 +29,11 @@ public class MovingEnemy : MonoBehaviour
     {
         if (!collision.CompareTag("Player1") && !collision.CompareTag("Player2")) return;
 
-        _gameController.lostGame = true;
-        _gameController.DeathScreen();
+        if (!_gameController.lostGame)
+        {
+            _gameController.lostGame = true;
+            _gameController.DeathScreen();
+        }
+
     }
 }

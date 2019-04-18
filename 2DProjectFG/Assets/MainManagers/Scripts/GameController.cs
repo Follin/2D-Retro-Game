@@ -18,17 +18,19 @@ public class GameController : MonoBehaviour
     [NonSerialized] public bool canPlay;
     //players lose
     [NonSerialized] public bool lostGame;
+    private AudioManager audioManager;
 
     [NonSerialized] public int CurrentScore;
 
     [NonSerialized] public int Player1Score;
     [NonSerialized] public int Player2Score;
-
+    
     public Text _finalScoreText;
 
 
     private void Awake()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         if (_deathScreen == null) return;
         _deathScreen.gameObject.SetActive(false);
         _deathText.color = new Color(_deathText.color.r, _deathText.color.g, _deathText.color.b, 0);
@@ -39,6 +41,8 @@ public class GameController : MonoBehaviour
     {
         if (!lostGame)
             ScoreUpdate();
+
+        print(lostGame);
     }
 
     public void ScoreUpdate()
@@ -54,6 +58,8 @@ public class GameController : MonoBehaviour
         _player2PickupsText.text = Player2Score +" pickups";
 
         StartCoroutine(DeathScreenBehaviour(0.01f, 1, _deathScreen, _deathText, _finalScoreText));
+        //play death sound
+        audioManager.PlayDeathSound();
     }
 
     IEnumerator DeathScreenBehaviour(float speed, float maxOpacity, Image deathScreen, Image deathText, Text finalScore)
